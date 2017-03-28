@@ -21,9 +21,15 @@ body
             bottom: 0;
             left: 0;
             border: 1px solid red;
-            overflow-x: scroll;
 
-            .slides
+
+
+
+            .slider{
+                width:70000px;
+            }
+
+            #slides
             {
                 height: 80px;
                 width: 100px;
