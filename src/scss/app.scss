@@ -1,0 +1,23 @@
+/*
+Application name:
+Description:
+Version: 1.0
+*/
+
+@charset 'UTF-8';
+
+// Tools
+@import 'tools/variables';
+@import 'tools/utility-classes';
+
+// Vendors
+@import 'vendor/responsive';
+
+// Base
+@import 'base/normalize';
+@import 'base/base';
+
+// Components
+@import 'components/main';
+
+// Layout
