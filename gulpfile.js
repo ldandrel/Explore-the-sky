@@ -7,6 +7,7 @@ const sourcemaps   = require('gulp-sourcemaps')
 const autoprefixer = require('gulp-autoprefixer')
 const rename       = require('gulp-rename')
 const imagemin     = require('gulp-imagemin')
+const babel        = require('gulp-babel')
 
 let config = {
     'src' : 'src/',
@@ -36,6 +37,9 @@ gulp.task('sass', () => {
 gulp.task('javascript', () => {
     return gulp.src(config.src + 'js/*.js')
         .pipe(plumber({errorHandler: notify.onError("JS Error: <%= error.message %>")}))
+        .pipe(babel({
+            presets: ['es2015']
+        }))
         .pipe(minify({
             ext:{
                 src:'.js',

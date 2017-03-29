@@ -8,16 +8,15 @@ Version: 1.0
 
 // Tools
 @import 'tools/variables';
-@import 'tools/utility-classes';
 
 // Vendors
 @import 'vendor/responsive';
 
 // Base
 @import 'base/normalize';
-@import 'base/base';
 
 // Components
-@import 'components/main';
+@import 'components/index';
+@import 'components/space';
 
 // Layout

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{ title(title) }}</title>
+    <meta name="description" content="{{ description }}" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+    <link href="{{ asset('css/app.min.css') }}" rel="stylesheet" type="text/css" />
+</head>
+
+
+
+{% block content %}{% endblock %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="{{ asset('js/virtualsky.js') }}"></script>
+<script>
+    window.onload = function () {
+        planetarium = $.virtualsky({
+            id: 'starmapper',
+            projection: 'gnomic',
+            fullscreen: true,
+            constellations: true,
+            credit: false
+        });
+        planetarium.draw();
+    };
+    var constellationId = null;
+    $(document).ready(function () {
+        $('button').on('click', function () {
+            this.x = parseFloat($(this).attr('data-x'));
+            this.y = parseFloat($(this).attr('data-y'));
+            constellationId = parseInt($(this).attr('data-id'));
+            planetarium.constellationLine = true;
+            planetarium.draw(undefined);
+            planetarium.panTo(this.x, this.y, 2200);
+        });
+    });
+</script>
+<script src="{{ asset('js/app.js') }}"></script>
+
+</body>
+</html>
+

@@ -2,7 +2,7 @@
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-
+session_start();
 
 //error_reporting(E_ALL);
 //set_error_handler('Core\Error::errorHandler');
@@ -15,8 +15,9 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 $router = new Core\Router();
 
 // Add the routes
-$router->add('', ['controller' => 'ConstellationController', 'action' => 'Constellation']);
-$router->add('api/constellations/', ['controller' => 'ConstellationController', 'action' => 'api']);
+$router->add('', ['controller' => 'Constellation', 'action' => 'Constellation']);
+$router->add('welcome', ['controller' => 'Constellation', 'action' => 'Welcome']);
+$router->add('api/constellations/', ['controller' => 'Constellation', 'action' => 'api']);
 
 
     

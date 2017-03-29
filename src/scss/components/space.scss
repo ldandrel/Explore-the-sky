@@ -1,0 +1,315 @@
+body.body-space
+{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-size: $main-size;
+    font-family: $main-font;
+    color: $white;
+
+    .container-space
+    {
+        height: 100%;
+        width: 100%;
+
+        /* The logo */
+        .logo
+        {
+            height: 50px;
+            width: 75px;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            background: $white;
+        }
+
+        /* User's informations */
+        .user-informations
+        {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+
+            .date
+            {
+                margin-left: 50px;
+            }
+        }
+
+        /* Container of the skymap */
+        .container-skymap
+        {
+            height: 85%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: grey;
+            z-index: -10;
+
+            div
+            {
+                height: 100%;
+                width: 100%;
+                position:relative;
+                z-index:99;
+            }
+        }
+
+        /* Container of the slider */
+        .container-slider
+        {
+            height: 15%;
+            width: 70%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: $third-color;
+            font-size: $text-size;
+
+            .slider
+            {
+                height: 100%;
+                width: 100%;
+                position: relative;
+
+                // Progress bar of the slider
+                .slider-progress-bar
+                {
+                    height: 4px;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-image: $gradient;
+                }
+
+                // Arrows of the slider
+                .arrow
+                {
+                    height: 20px;
+                    width: 10px;
+                    position: absolute;
+                    top: calc(50% + 4px);
+                    transform: translateY(-50%);
+                    background: $white;
+                }
+
+                .left-arrow {left: 50px;}
+                .right-arrow {right: 50px;}
+
+                .box-slides
+                {
+                    height: 100%;
+                    width: 80%;
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    overflow: hidden;
+
+                    .container-slides
+                    {
+                        height: 100%;
+                        width: 3000px;
+                        position: relative;
+                        cursor: move; //
+
+                        .slide
+                        {
+                            height: 100%;
+                            width: 150px;
+                            display: inline-block;
+                            text-align: center;
+                            float: left;
+                            position: relative;
+
+                            .name-constellation
+                            {
+                                position: absolute;
+                                top: calc(50% - 35px);
+                                left: 50%;
+                                transform: translateX(-50%);
+                                text-transform: uppercase;
+                                font-weight: $extra-bold;
+                                font-size: $slider-size;
+                            }
+
+                            .button-constellation
+                            {
+                                height: 15px;
+                                width: 15px;
+                                position: absolute;
+                                top: calc(50% - 2px);
+                                left: 45%;
+                                background: $white;
+                                border: none;
+                                border-radius: 10px;
+                                outline: none;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+
+                // Underline (the line behind the slides)
+                .slider-underline
+                {
+                    height: 2px;
+                    width: 80%;
+                    position: absolute;
+                    top: calc(50% + 4px);
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: $grey;
+                }
+            }
+        }
+
+        /* Container of the slidebar */
+        .container-informations
+        {
+            height: 100%;
+            width: 30%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: $third-color;
+            box-shadow: $box-shadow;
+            font-size: $text-size;
+
+            .informations
+            {
+                height: 100%;
+                width: 100%;
+                position: relative;
+
+                // Cross
+                .cross
+                {
+                    height: 15px;
+                    width: 15px;
+                    position: absolute;
+                    top: 30px;
+                    right: 50px;
+                    background: $black;
+                    cursor: pointer;
+                }
+
+                // Title of the constellation
+                .title-constellation
+                {
+                    position: absolute;
+                    top: 50px;
+                    left: 50px;
+
+                    .informations-name
+                    {
+                        font-size: 36px;
+                        font-weight: $extra-bold;
+                        text-transform: uppercase;
+                    }
+
+                    .informations-genitif
+                    {
+                        font-size: 24px;
+                        font-style: $italic;
+                    }
+                }
+
+                .informations-navigation
+                {
+                    height: 50px;
+                    width: 100%;
+                    position: absolute;
+                    top: 150px;
+                    left: 0px;
+
+                    .navigation-bar
+                    {
+                        height: 4px;
+                        width: 100%;
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        background: $second-color;
+                    }
+
+                    .progress-bar
+                    {
+                        transform: scaleX(0.25);
+                        transform-origin: left;
+                        background: $first-color;
+                        z-index: 5;
+                    }
+
+                    .navigation
+                    {
+                        height: 30px;
+                        width: 30px;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        outline: none;
+                        border: none;
+                        border-radius: 15px;
+                        background: $second-color;
+                        color: $white;
+                        z-index: 10;
+                        cursor: pointer;
+                    }
+
+                    .navigation-active
+                    {
+                        top: 50%;
+                        transform: translateY(-50%) scale(1.5);
+                        background: $first-color;
+                    }
+
+                    .navigation-history {left: 75px;}
+                    .navigation-environment {left: 50%; transform: translateX(-50%) translateY(-50%);}
+                    .navigation-visibility {right: 75px;}
+                }
+
+                .information-content
+                {
+                    height: auto;
+                    width: calc(100% - 100px);
+                    position: absolute;
+                    top: 225px;
+                    left: 50px;
+
+                    .content-history
+                    {
+                        h2
+                        {
+                            margin-bottom: 25px;
+                            font-size: 24px;
+                        }
+
+                        h3
+                        {
+                            margin-top: 25px;
+                            font-size: $main-size;
+                        }
+
+                        p
+                        {
+
+                        }
+                    }
+
+                    .content-environment
+                    {
+                        display: none;
+                    }
+
+                    .content-visibility
+                    {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
