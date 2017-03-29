@@ -32,7 +32,7 @@ class Constellation extends Controller
         $model = new MeteoModel();
         $city = (isset($_GET['city']) ? $_GET['city'] : '');
 
-        echo  $model->meteo($city);
+        // $model->meteo($city);
         if($city = $model->city($city)){
             $_SESSION['city'] = $city;
             App::redirect();
