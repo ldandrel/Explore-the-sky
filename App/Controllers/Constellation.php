@@ -59,8 +59,9 @@ class Constellation extends Controller
                     $neighbor = $neighbor['name'];
                     $items[] =  $neighbor;
                 }
-                $results['neighbors_name'] = $items;
-                echo json_encode($results);
+                $data['neighbors_name'] = $items;
+                $data['constellation'] = $results;
+                echo json_encode($data);
             }
 
         } else {

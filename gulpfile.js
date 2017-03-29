@@ -37,9 +37,6 @@ gulp.task('sass', () => {
 gulp.task('javascript', () => {
     return gulp.src(config.src + 'js/*.js')
         .pipe(plumber({errorHandler: notify.onError("JS Error: <%= error.message %>")}))
-        .pipe(babel({
-            presets: ['es2015']
-        }))
         .pipe(minify({
             ext:{
                 src:'.js',
