@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\MeteoModel;
 use \Core\View;
 use \Core\App;
 use \App\Models\ConstellationModel;
@@ -27,8 +28,11 @@ class Constellation extends Controller
     public function Welcome()
     {
 
-        $model = new ConstellationModel();
+
+        $model = new MeteoModel();
         $city = (isset($_GET['city']) ? $_GET['city'] : '');
+
+        echo  $model->meteo($city);
         if($city = $model->city($city)){
             $_SESSION['city'] = $city;
             App::redirect();

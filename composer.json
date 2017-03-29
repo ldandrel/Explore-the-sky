@@ -1,6 +1,7 @@
 {
     "require": {
-        "twig/twig": "~2.0"
+        "twig/twig": "~2.0",
+        "cmfcmf/openweathermap-php-api": "^2.2"
     },
     "autoload": {
         "psr-4": {
