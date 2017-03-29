@@ -1,7 +1,7 @@
 {% extends 'layouts/default.twig' %}
 
 {% block content %}
-    <body class="body-space">
+<body class="body-space">
     <section class="container-space">
         <!-- Div for the logo -->
         <div class="logo">
@@ -9,13 +9,11 @@
         </div>
         <!-- Section which contains the city choose by the user and the current date -->
         <section class="user-informations">
-            <span class="city">{{ city }}</span>
-            <span class="date">{{ date(date) }}</span>
+            <span class="city">Paris</span>
+            <span class="date">Mardi 28 mars 2017</span>
         </section>
         <!-- Section which contains the skymap -->
-        <section class="container-skymap">
-            <div id="starmapper"></div>
-        </section>
+        <section id="container-skymap"></section>
         <!-- Section which contains the slider -->
         <section class="container-slider">
             <div class="slider">
@@ -26,8 +24,8 @@
                 <div class="arrow right-arrow"></div>
                 <!-- Div which show a part of the slides -->
                 <div class="box-slides">
-                    <!-- Container for all the slides -->
-                    <div class="container-slides">
+                <!-- Container for all the slides -->
+                    <div data-offset="0" class="container-slides">
                         <!-- Slide which contains the name and the button to access constellation's informations -->
                         {% for constellation in constellations %}
                         <div class="slide">

@@ -21,11 +21,18 @@
 <script>
     window.onload = function () {
         planetarium = $.virtualsky({
-            id: 'starmapper',
+            id: 'container-skymap',
             projection: 'gnomic',
             fullscreen: true,
             constellations: true,
-            credit: false
+            credit: false,
+            showdate: false,
+            showposition: false,
+            longitude: {{ long }},
+            latitude: {{ lat }},
+            live : true,
+            keyboard: false
+
         });
         planetarium.draw();
     };
@@ -45,4 +52,3 @@
 
 </body>
 </html>
-
