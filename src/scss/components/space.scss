@@ -6,6 +6,7 @@ body.body-space
     font-size: $main-size;
     font-family: $main-font;
     color: $white;
+    background: $third-color;
 
     .container-space
     {
@@ -35,6 +36,7 @@ body.body-space
             position: absolute;
             top: 50px;
             right: 50px;
+            z-index: 20;
 
             .date
             {
@@ -65,6 +67,7 @@ body.body-space
             background: $third-color;
             font-size: $text-size;
             z-index: 10;
+            transition: width 0.5s ease;
 
             .slider
             {
@@ -112,9 +115,10 @@ body.body-space
                     .container-slides
                     {
                         height: 100%;
-                        width: 5000px;
+                        width: 13200px;
                         position: relative;
-                        cursor: move; //
+                        cursor: move;
+                        transition: transform 0.2s ease;
 
                         .slide
                         {
@@ -134,6 +138,10 @@ body.body-space
                                 text-transform: uppercase;
                                 font-weight: $extra-bold;
                                 font-size: $slider-size;
+                                user-select: none;
+                                -moz-user-select: none;
+                                -webkit-user-select: none;
+                                -ms-user-select: none;
                             }
 
                             .button-constellation
@@ -150,20 +158,70 @@ body.body-space
                                 cursor: pointer;
                             }
                         }
+
+                        .slide-active
+                        {
+                            .name-constellation
+                            {
+                        	    position: absolute;
+                                top: 8px;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                padding: 5px;
+                        	    background: $grey;
+                                border-radius: 2px;
+
+                                &::after
+                                {
+                                    height: 0;
+                                    width: 0;
+                                	position: absolute;
+                            	    top: 100%;
+                                	left: 50%;
+                                	border: solid transparent;
+                                	content: " ";
+                                	pointer-events: none;
+                                	border-color: rgba(0, 0, 0, 0);
+                                	border-top-color: $grey;
+                                	border-width: 8px;
+                                	margin-left: -8px;
+                                }
+                            }
+
+                            .button-constellation
+                            {
+                                background: $second-color;
+
+                                &::after
+                                {
+                                    height: 25px;
+                                    width: 25px;
+                                    position: absolute;
+                                    top: -5px;
+                                    left: -5px;
+                                    content: ' ';
+                                    background: $second-color;
+                                    box-shadow: 0px 0px 10px 5px $second-color;
+                                    opacity: 0.5;
+                                    border-radius: 15px;
+                                }
+                            }
+                        }
                     }
                 }
 
                 // Underline (the line behind the slides)
-                .slider-underline
-                {
-                    height: 2px;
-                    width: 80%;
-                    position: absolute;
-                    top: calc(50% + 4px);
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background: $grey;
-                }
+                // .slider-underline
+                // {
+                //     height: 2px;
+                //     width: 80%;
+                //     position: absolute;
+                //     top: calc(50% + 4px);
+                //     left: 50%;
+                //     transform: translateX(-50%);
+                //     background: $grey;
+                //     z-index: 9;
+                // }
             }
         }
 
@@ -172,7 +230,7 @@ body.body-space
         {
             height: 100%;
             width: 30%;
-            display: none;
+            transform: translateX(100%);
             position: absolute;
             top: 0;
             right: 0;
@@ -180,6 +238,7 @@ body.body-space
             box-shadow: $box-shadow;
             font-size: $text-size;
             z-index: 11;
+            transition: transform 0.5s ease;
 
             .informations
             {
@@ -195,8 +254,34 @@ body.body-space
                     position: absolute;
                     top: 30px;
                     right: 50px;
-                    background: $black;
                     cursor: pointer;
+                    opacity: 0.3;
+                    transition: opacity 0.3s ease;
+
+                    &:hover
+                    {
+                        opacity: 1;
+                    }
+
+                    &::before, &::after
+                    {
+                        position: absolute;
+                        left: 15px;
+                        content: ' ';
+                        height: 25px;
+                        width: 5px;
+                        background-color: $white;
+                    }
+
+                    &::before
+                    {
+                        transform: rotate(45deg);
+                    }
+
+                    &::after
+                    {
+                      transform: rotate(-45deg);
+                    }
                 }
 
                 // Title of the constellation
@@ -210,13 +295,20 @@ body.body-space
                     {
                         font-size: 36px;
                         font-weight: $extra-bold;
-                        text-transform: uppercase;
+                        opacity: 0;
+                        transform: translate(-20px);
+                        will-change: opacity transform;
+                        transition: opacity 0.3s $transition 0.3s, transform 0.3s $transition 0.3s;
                     }
 
                     .informations-genitif
                     {
                         font-size: 24px;
                         font-style: $italic;
+                        opacity: 0;
+                        transform: translate(-20px);
+                        will-change: opacity transform;
+                        transition: opacity 0.3s $transition 0.4s, transform 0.3s $transition 0.4s;
                     }
                 }
 
@@ -231,10 +323,10 @@ body.body-space
                     .navigation-bar
                     {
                         height: 4px;
-                        width: 100%;
+                        width: calc(100% - 110px);
                         position: absolute;
                         top: 50%;
-                        left: 0;
+                        left: 55px;
                         background: $second-color;
                     }
 
@@ -244,6 +336,7 @@ body.body-space
                         transform-origin: left;
                         background: $first-color;
                         z-index: 5;
+                        transition: transform 0.5s ease;
                     }
 
                     .navigation
@@ -263,6 +356,8 @@ body.body-space
                         text-align: center;
                         text-decoration: none;
                         line-height: 30px;
+                        will-change: transform;
+                        transition: transform 0.3s ease;
                     }
 
                     .navigation-active
@@ -277,9 +372,9 @@ body.body-space
                         transform: translateX(-50%) translateY(-50%) scale(1.5);
                     }
 
-                    .navigation-history {left: 75px;}
+                    .navigation-history {left: 50px;}
                     .navigation-environment {left: 50%; transform: translateX(-50%) translateY(-50%);}
-                    .navigation-visibility {right: 75px;}
+                    .navigation-visibility {right: 50px;}
                 }
 
                 .information-content
@@ -293,18 +388,19 @@ body.body-space
                     h2
                     {
                         margin-bottom: 25px;
+                        padding-bottom: 10px;
                         font-size: 24px;
+                        text-transform: uppercase;
+                        border-bottom: 2px solid $first-color;
+                        font-weight: $extra-bold;
                     }
 
                     h3
                     {
                         margin-top: 25px;
+                        margin-bottom: 10px;
                         font-size: $main-size;
-                    }
-
-                    p
-                    {
-
+                        font-weight: $extra-bold;
                     }
 
                     .content-history
@@ -316,12 +412,36 @@ body.body-space
                     .content-visibility {display: none;}
                     .content-active {display: block;}
                 }
+
+                .informations-background
+                {
+                    height: 100%;
+                    width: 100%;
+                }
             }
         }
 
         .container-informations-active
         {
-            display: block;
+            transform: translateX(0%);
+
+            .informations
+            {
+                .title-constellation
+                {
+                    .informations-name
+                    {
+                        opacity: 1;
+                        transform: translateX(0px);
+                    }
+
+                    .informations-genitif
+                    {
+                        opacity: 1;
+                        transform: translateX(0px);
+                    }
+                }
+            }
         }
     }
 }
