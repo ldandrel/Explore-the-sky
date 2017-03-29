@@ -5,7 +5,7 @@
     <section class="container-space">
         <!-- Div for the logo -->
         <div class="logo">
-            <img src="{{ asset('img/logo_sky.png') }}" alt="">
+            <img src="{{ asset('img/logo_sky.png') }}" alt="Logo of the website">
         </div>
         <!-- Section which contains the city choose by the user and the current date -->
         <section class="user-informations">
@@ -40,7 +40,7 @@
             </div>
         </section>
         <!-- Section which contains the slidebar with the constellation's informations -->
-        <section class="container-informations container-informations-active">
+        <section class="container-informations">
             <div class="informations">
                 <!-- Cross to close the slidebar -->
                 <div class="cross"></div>
@@ -55,14 +55,14 @@
                     <div class="navigation-bar progress-bar"></div>
                     <div class="navigation-bar"></div>
                     <!-- Each button -->
-                    <button class="navigation navigation-history navigation-active">H</button>
-                    <button class="navigation navigation-environment">E</button>
-                    <button class="navigation navigation-visibility">V</button>
+                    <a href="#" data-index="0" class="navigation navigation-history navigation-active">H</a>
+                    <a href="#" data-index="1" class="navigation navigation-environment">E</a>
+                    <a href="#" data-index="2" class="navigation navigation-visibility">V</a>
                 </div>
                 <!-- Div which contains the content -->
                 <div class="information-content">
                     <!-- The content for the history's part -->
-                    <div class="content-history">
+                    <div class="content content-history content-active">
                         <!-- Constellation's history -->
                         <h2 class="history-title">History</h2>
                         <p class="history-text">Originally Antlia Pneumatica or La Machine Pneumatique,was established by Nicolas-Louis de Lacaille in the 18th century, though its name was later abbreviated by John Herschel. The constellation is faint and is located in the Southern Celestial Hemisphere, it's name means "pump" in Latin and it's form reminds of an air pump. It was one of the instruments that symbolised the years of enlightment.</p>
@@ -77,14 +77,14 @@
                         <p class="meaning-text">Air pump</p>
                     </div>
                     <!-- The content for the environment's part -->
-                    <div class="content-environment">
+                    <div class="content content-environment">
                         <!-- Constellation's environment -->
                         <h2 class="environment-title">Environment</h2>
                         <!-- The brightest star in the constellation -->
                         <h3 class="brightest-star-title">The brightest star</h3>
                         <p class="brightest-star-text">Antliae</p>
                         <!-- All the constellations which bordering the choose constellation -->
-                        <h3 class="bordering-title"></h3>
+                        <h3 class="bordering-title">The boundary constellations</h3>
                         <ul class="bordering-list">
                             <li class="bordering-element">Hydra</li>
                             <li class="bordering-element">Pyxis</li>
@@ -93,7 +93,7 @@
                         </ul>
                     </div>
                     <!-- The content for the visibility's part -->
-                    <div class="content-visibility">
+                    <div class="content content-visibility">
                         <h2 class="visibility-title">Visibility</h2>
                         <p class="visibility-text">Between 45° North and 90° South</p>
                         <h3 class="optimal-title">Optimal visibility</h3>

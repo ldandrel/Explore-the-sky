@@ -18,10 +18,15 @@ body.body-space
             height: 50px;
             width: 75px;
             position: absolute;
-            top: 50px;
+            top: 25px;
             left: 50px;
-            background: $white;
             z-index: 15;
+
+            img
+            {
+                height: auto;
+                width: 100%;
+            }
         }
 
         /* User's informations */
@@ -53,7 +58,7 @@ body.body-space
         .container-slider
         {
             height: 15%;
-            width: 70%;
+            width: 100%;
             position: absolute;
             bottom: 0;
             left: 0;
@@ -81,16 +86,18 @@ body.body-space
                 // Arrows of the slider
                 .arrow
                 {
-                    height: 20px;
-                    width: 10px;
                     position: absolute;
-                    top: calc(50% + 4px);
+                    top: calc(50% - 2px);
                     transform: translateY(-50%);
-                    background: $white;
+                    border: solid $white;
+                    border-width: 0 5px 5px 0;
+                    display: inline-block;
+                    padding: 5px;
+                    cursor: pointer;
                 }
 
-                .left-arrow {left: 50px;}
-                .right-arrow {right: 50px;}
+                .left-arrow {left: 50px; transform: rotate(135deg);}
+                .right-arrow {right: 50px; transform: rotate(-45deg);}
 
                 .box-slides
                 {
@@ -165,6 +172,7 @@ body.body-space
         {
             height: 100%;
             width: 30%;
+            display: none;
             position: absolute;
             top: 0;
             right: 0;
@@ -252,6 +260,9 @@ body.body-space
                         color: $white;
                         z-index: 10;
                         cursor: pointer;
+                        text-align: center;
+                        text-decoration: none;
+                        line-height: 30px;
                     }
 
                     .navigation-active
@@ -259,6 +270,11 @@ body.body-space
                         top: 50%;
                         transform: translateY(-50%) scale(1.5);
                         background: $first-color;
+                    }
+
+                    .navigation-environment.navigation-active
+                    {
+                        transform: translateX(-50%) translateY(-50%) scale(1.5);
                     }
 
                     .navigation-history {left: 75px;}
@@ -274,37 +290,38 @@ body.body-space
                     top: 225px;
                     left: 50px;
 
+                    h2
+                    {
+                        margin-bottom: 25px;
+                        font-size: 24px;
+                    }
+
+                    h3
+                    {
+                        margin-top: 25px;
+                        font-size: $main-size;
+                    }
+
+                    p
+                    {
+
+                    }
+
                     .content-history
                     {
-                        h2
-                        {
-                            margin-bottom: 25px;
-                            font-size: 24px;
-                        }
-
-                        h3
-                        {
-                            margin-top: 25px;
-                            font-size: $main-size;
-                        }
-
-                        p
-                        {
-
-                        }
-                    }
-
-                    .content-environment
-                    {
                         display: none;
                     }
 
-                    .content-visibility
-                    {
-                        display: none;
-                    }
+                    .content-environment {display: none;}
+                    .content-visibility {display: none;}
+                    .content-active {display: block;}
                 }
             }
+        }
+
+        .container-informations-active
+        {
+            display: block;
         }
     }
 }
