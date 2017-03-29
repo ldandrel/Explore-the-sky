@@ -26,13 +26,41 @@ function mouseDown(e) {
 
 function move(e) {
     var mouse = e.clientX;
-
     var offset = mouse_initial_pos - mouse;
+
     content.el.container_slides.style.transform = 'translateX(' + (transform_initial_pos - offset) +'px)';
 };
 
-// Constellation(id)
-function Constellation(id)
-{
-    content.el.container_informations.classList.add('container-informations-active');
+function Constellation (id) {
+    this.search = function (value, order) {
+// Instanciate request
+        var xhr = new XMLHttpRequest();
+
+// Ready stage change callback
+        xhr.onreadystatechange = function () {
+            // Is done
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                // Success
+                if (xhr.status === 200) {
+                    var result = JSON.parse(xhr.responseText);
+                    console.log('success');
+                    console.log(result);
+                    for (var i = 0; i < result.length; i++) {
+
+                       console.log(result.name);
+                    };
+                }
+                else {
+                    console.log('error');
+                }
+            }
+        };
+
+// Open request
+        xhr.open("GET", "api/constellations/?id=" + id, true);
+// Send request
+        xhr.send();
+    }
 }
+
+Constellation(12);

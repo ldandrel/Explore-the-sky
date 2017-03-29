@@ -37,7 +37,7 @@ body.body-space
         }
 
         /* Container of the skymap */
-        .container-skymap
+        #container-skymap
         {
             height: 85%;
             width: 100%;
@@ -45,15 +45,7 @@ body.body-space
             top: 0;
             left: 0;
             background: grey;
-            z-index: -10;
-
-            div
-            {
-                height: 100%;
-                width: 100%;
-                position:relative;
-                z-index:99;
-            }
+            z-index: 9;
         }
 
         /* Container of the slider */
@@ -66,6 +58,7 @@ body.body-space
             left: 0;
             background: $third-color;
             font-size: $text-size;
+            z-index: 10;
 
             .slider
             {
@@ -111,7 +104,7 @@ body.body-space
                     .container-slides
                     {
                         height: 100%;
-                        width: 3000px;
+                        width: 5000px;
                         position: relative;
                         cursor: move; //
 
@@ -177,6 +170,7 @@ body.body-space
             background: $third-color;
             box-shadow: $box-shadow;
             font-size: $text-size;
+            z-index: 11;
 
             .informations
             {
