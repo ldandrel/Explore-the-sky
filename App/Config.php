@@ -5,7 +5,7 @@ namespace App;
 
 class Config
 {
-    const URL = 'http://space:8888/';
+    const URL = 'http://localhost:8888/';
 
     const NAME = 'Space Exploration';
 
