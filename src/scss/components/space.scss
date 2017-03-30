@@ -239,12 +239,14 @@ body.body-space
             font-size: $text-size;
             z-index: 11;
             transition: transform 0.5s ease;
+            overflow-y: scroll;
 
             .informations
             {
                 height: 100%;
                 width: 100%;
                 position: relative;
+                padding-bottom: 100px;
 
                 // Cross
                 .cross
@@ -417,6 +419,20 @@ body.body-space
                 {
                     height: 100%;
                     width: 100%;
+                }
+
+                .informations-background
+                {
+                    height: 100%;
+                    width: 100%;
+                    opacity: 0.1;
+
+                    img
+                    {
+                        height: 100%;
+                        width: auto;
+                        opacity: 0.5;
+                    }
                 }
             }
         }

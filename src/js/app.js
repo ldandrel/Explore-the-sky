@@ -47,7 +47,7 @@ var mouse_up_pos = 0;
 // Listen the mouse up
 function mouseUp(e) {
     window.removeEventListener('mousemove', move, true);
-    mouse_up_pos = content.el.container_slides.style.transform.replace('translateX(', '').replace('px)', '');;
+    mouse_up_pos = content.el.container_slides.style.transform.replace('translateX(', '').replace('px)', '');
 }
 
 // Listen the mouse down and stock the mouseX and the current value of the translateX of the slider
@@ -95,8 +95,6 @@ content.el.left_arrow.addEventListener('click', function() {
 /*
  * The container informations
  */
-
-
 
 
 // Manage the nav bar with the good content
@@ -244,9 +242,3 @@ function constellation(id) {
         xhr.send();
 
 }
-
-
-
-
-
-

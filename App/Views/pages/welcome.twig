@@ -5,21 +5,18 @@
 <body class="body-index">
 <section class="container-landing">
     <!-- Name of the website -->
-    <h1>Space Exploration</h1>
+    <div class="logo">
+        <img src="{{ asset('img/logo_sky.png') }}" alt="Logo of the website">
+    </div>
     <!-- Explains how to navigate in the website -->
     <h2>How to navigate on the website ?</h2>
     <p>Drag and drop the sky to navigate in the constellations. Click on a bubble in the slider to see the information of the constellation you choose.</p>
     <!-- Input for the city that the user enter -->
     <form action="welcome" method="get">
-        <h2>What is your city's name ?</h2>
-        <input type="text" name="city" id="city" placeholder="Paris">
-        <input type="submit"></input>
+        <input type="submit" value="Let's go"></input>
     </form>
-    <!-- Button to access to the website -->
 
-
-    <!-- A enlever lorsqu'il y aura la skymap d'installer -->
-    <img src="assets/img/bg.png" alt="">
+    <img class="bg" src="assets/img/bg.png" alt="Image of the sky">
 </section>
 
 {% endblock %}
