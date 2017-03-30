@@ -16,10 +16,18 @@ class ConstellationModel extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function find($id, $iau, $name)
+    public static function find($id, $name)
     {
         $db = static::getDB();
-        $sql = $db->query("SELECT * FROM constellations WHERE  IAU = '$iau' OR name = '$name' OR id IN ($id)");
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
+        if($id != ''){
+            $sql = $db->query("SELECT * FROM constellations WHERE name LIKE '%$name%' AND id IN ($id)");
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
+        } else if ($name != '') {
+            $sql = $db->query("SELECT * FROM constellations WHERE name LIKE '$name%'");
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return array(['error' => 'An error occured']);
+        }
     }
+
 }

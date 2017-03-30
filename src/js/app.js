@@ -6,6 +6,9 @@ var content = {};
 
 content.el = {};
 
+//Variable for search
+content.el.search                 = document.querySelector('.form-search-constellation input')
+
 // Variables for the skymap
 content.el.skymap                 = document.querySelector('#container-skymap');
 
@@ -164,13 +167,13 @@ function close_container_informations()
 
 content.el.cross.addEventListener('click', function(){
     close_container_informations();
-    constellationId = -1;
+    constellationId = '';
     planetarium.draw();
 });
 
 document.addEventListener('click', function(){
     close_container_informations();
-    constellationId = -1;
+    constellationId = '';
     planetarium.draw();
 });
 
@@ -181,6 +184,17 @@ content.el.container_informations.addEventListener('click', function(event){
 content.el.slider.addEventListener('click', function(event){
     event.stopPropagation();
 });
+
+/*
+ * Live search
+ */
+var search ='';
+//Listener keyup for ajex request
+content.el.search.addEventListener('keyup', function () {
+         search = this.value;
+    console.log(search);
+});
+
 
 
 
@@ -280,3 +294,5 @@ function constellation(id) {
         xhr.send();
 
 }
+
+

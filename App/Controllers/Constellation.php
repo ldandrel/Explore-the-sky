@@ -14,8 +14,7 @@ class Constellation extends Controller
 
     public function Constellation()
     {
-        $model = new ConstellationModel();
-        $data = $model->all();
+
         App::secured();
 
         if(isset($_POST['city'])){
@@ -27,7 +26,8 @@ class Constellation extends Controller
             $_SESSION['data'] = $data;
         }
 
-
+        $model = new ConstellationModel();
+        $data = $model->all();
 
         View::renderTemplate('pages/index.twig', [
             'city' => (isset($_SESSION['data']['city']['address']) ? $_SESSION['data']['city']['address'] : ''),
@@ -57,53 +57,45 @@ class Constellation extends Controller
 
     public function api(){
         $model = new ConstellationModel();
-        $id = (isset($_GET['id']) ? $_GET['id'] : "''");
-        $iau = (isset($_GET['iau']) ? $_GET['iau'] : '');
+        $id = (isset($_GET['id']) ? $_GET['id'] : '');
         $name = (isset($_GET['name']) ? $_GET['name'] : '');
 
         header('Content-Type: application/json');
 
+        if (strlen($id) > 1){
+            $data[] = ['error' => 'You can request just one id'];
+        } else if (isset($_GET['id']) || isset($_GET['name'])) {
+            $results = $model -> find($id,$name);
+            if(isset($_GET['id'])){
+                foreach ($results as $result) {
+                    $neighbors = $result['neighbor'];
+                    $neighbors = $model -> find($neighbors,$name);
 
-        if(isset($_GET['id']) || isset($_GET['iau']) || isset($_GET['name'])) {
-            $results = $model -> find($id,$iau,$name);
-            foreach ($results as $result) {
-                $neighbors = $result['neighbor'];
-                $neighbors = $model -> find($neighbors,$iau,$name);
+                    foreach ($neighbors as $neighbor) {
+                        $neighbor_name[] = $neighbor['name'];
+                        $neighbor_ra[] = $neighbor['ra'];
+                        $neighbor_dec[] = $neighbor['declinaison'];
+                        $neighbor_id[] = $neighbor['id'];
+                    }
 
 
-
-                foreach ($neighbors as $neighbor) {
-                    $neighbor_name[] = $neighbor['name'];
-                    $neighbor_ra[] = $neighbor['ra'];
-                    $neighbor_dec[] = $neighbor['declinaison'];
-                    $neighbor_id[] = $neighbor['id'];
-
-
+                    $data['neighbors_name'] = $neighbor_name;
+                    $data['neighbors_ra']   = $neighbor_ra;
+                    $data['neighbors_dec']  = $neighbor_dec;
+                    $data['neighbors_id']   = $neighbor_id;
                 }
-
-
-
-
-
-
-
-
-
-                $data['neighbors_name'] = $neighbor_name;
-                $data['neighbors_ra'] = $neighbor_ra;
-                $data['neighbors_dec'] = $neighbor_dec;
-                $data['neighbors_id'] = $neighbor_id;
-                $data['constellation'] = $results;
-                $data['constellation'][0]['images'] = Config::URL . 'assets/' . $data['constellation'][0]['images'];
-               echo json_encode($data);
             }
+
+            $data['constellation'] = $results;
+            $data['constellation'][0]['images'] = Config::URL . 'assets/' . $data['constellation'][0]['images'];
+
+
 
         } else {
             $data = $model -> all();
-            echo json_encode($data);
         }
 
-
+        echo json_encode($data);
 
 
 
