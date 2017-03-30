@@ -17,7 +17,7 @@ body.body-space
         .logo
         {
             height: 50px;
-            width: 75px;
+            width: 80px;
             position: absolute;
             top: 25px;
             left: 50%;
@@ -39,15 +39,28 @@ body.body-space
         .search-constellation
         {
             position: absolute;
-            top: 50px;
+            top: 25px;
             right: 50px;
             z-index: 20;
 
             form
             {
+
                 input.search
                 {
+                    padding: 10px 15px;
+                    border: 3px solid $first-color;
+                    border-radius: 30px;
+                    outline: none;
+                    background: transparent;
+                    color: $first-color;
+                    font-family: $main-font;
 
+                    &::placeholder
+                    {
+                        color: $first-color;
+                        opacity: 0.7;
+                    }
                 }
             }
         }
@@ -56,10 +69,57 @@ body.body-space
         .user-informations
         {
             position: absolute;
-            top: 50px;
+            top: 25px;
             left: 50px;
             z-index: 20;
-            font-family: $data-font;
+
+            .form-city
+            {
+                position: absolute;
+                top: 0;
+                left: -50px;
+
+                input
+                {
+                    padding: 10px 10px 10px 50px;
+                    background-image: $gradient;
+                    border: none;
+                    border-radius: 0 50px 50px 0;
+                    outline: none;
+                    color: $white;
+
+                    &::placeholder
+                    {
+                        color: $white;
+                        opacity: 0.5;
+                    }
+                }
+            }
+
+            .city-informations
+            {
+                width: 250px;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                font-family: $data-font;
+
+                span
+                {
+                    display: block;
+                    padding: 2px 0;
+                }
+
+                .infos, .sunset, .sunrise
+                {
+                    display: inline-block;
+                }
+
+                .infos
+                {
+                    margin-right: 10px;
+                }
+            }
         }
 
         /* Container of the skymap */

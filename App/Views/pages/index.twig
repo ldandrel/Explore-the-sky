@@ -10,7 +10,7 @@
         <!-- Div for the searchbox -->
         <section class="search-constellation">
             <form class="form-search-constellation" action="" method="get">
-                <input class="search" type="search" name="constellation" placeholder="Andromeda">
+                <input class="search" type="search" name="constellation" placeholder="Search a constellation">
             </form>
         </section>
         <!-- Section which contains the city choose by the user and the current date -->
@@ -18,12 +18,14 @@
             <form class="form-city" action="" method="post">
                 <input type="text" name="city" placeholder="Enter your city">
             </form>
-            <span class="date_day">30/03/2017</span>
-            <span class="hour_date">12:11 AM</span>
-            <span class="city">Paris, France</span>
-            <span class="infos">Sunrise</span><span class="sunrise">05:11 AM</span>
-            <span class="infos">Sunset</span><span class="sunset">09:12 PM</span>
-            <span class="weather">Cloudy</span>
+            <div class="city-informations">
+                <span class="date_day">30/03/2017</span>
+                <span class="hour_date">12:11 AM</span>
+                <span class="city">Paris, France</span>
+                <span class="infos">Sunrise: </span><span class="sunrise">05:11 AM</span>
+                <span class="infos">Sunset: </span><span class="sunset">09:12 PM</span>
+                <span class="weather">Cloudy</span>
+            </div>
         </section>
         <!-- Section which contains the skymap -->
         <section id="container-skymap"></section>
