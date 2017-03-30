@@ -124,14 +124,76 @@ body.body-space
         }
 
         /* Zoom */
-        .zoom
+        .container-zoom
         {
+            height: 200px;
+            width: 40px;
             position: absolute;
-            top: 400px;
-            left: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 50px;
             z-index: 20;
-            transform: rotate(90deg);
-            background: red;
+            background: $third-color;
+            border-radius: 50px;
+            opacity: 0.7;
+
+            .zoom
+            {
+                position: absolute;
+                top: calc(50%);
+                left: 50%;
+                transform-origin: left;
+                transform: rotate(90deg) translate(-50%);
+            }
+
+            input[type=range]
+            {
+                -webkit-appearance: none;
+            }
+
+            input[type=range]::-webkit-slider-runnable-track
+            {
+                width: 300px;
+                height: 5px;
+                background: $grey;
+                border: none;
+            }
+
+            input[type=range]::-webkit-slider-thumb
+            {
+                -webkit-appearance: none;
+                border: none;
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+                background: $second-color;
+                margin-top: -6px;
+                cursor: pointer;
+            }
+
+            input[type=range]:focus
+            {
+                outline: none;
+            }
+
+            input[type=range]:focus::-webkit-slider-runnable-track
+            {
+                background: $grey;
+            }
+
+            div
+            {
+                font-size: 18px;
+                font-weight: $extra-bold;
+                color: $grey;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .zoom-in {top: 10px;}
+
+            .zoom-out {bottom: 10px;}
         }
 
         /* Container of the skymap */
@@ -324,7 +386,7 @@ body.body-space
                                     width: 35px;
                                     top: -10px;
                                     left: -10px;
-                                    opacity: 0.15;
+                                    opacity: 0.1;
                                 }
                             }
                         }
@@ -359,8 +421,9 @@ body.body-space
             font-size: $text-size;
             z-index: 11;
             transition: transform 0.5s ease;
-            overflow-y: scroll;
             background: $third-color;
+            padding-bottom: 50px;
+            overflow-y: scroll;
 
             .informations
             {
@@ -375,7 +438,7 @@ body.body-space
                 {
                     height: 15px;
                     width: 15px;
-                    position: absolute;
+                    position: fixed;
                     top: 30px;
                     right: 50px;
                     cursor: pointer;
@@ -412,7 +475,7 @@ body.body-space
                 // Title of the constellation
                 .title-constellation
                 {
-                    position: absolute;
+                    position: fixed;
                     top: 50px;
                     left: 50px;
 
@@ -511,6 +574,7 @@ body.body-space
                     .navigation-history {left: 50px;}
                     .navigation-environment {left: 50%; transform: translateX(-50%) translateY(-50%);}
                     .navigation-visibility {right: 50px;}
+
                 }
 
                 .information-content
@@ -544,7 +608,23 @@ body.body-space
                         display: none;
                     }
 
-                    .content-environment {display: none;}
+                    .content-environment
+                    {
+                        display: none;
+
+                        button.bordering-element
+                        {
+                            display: block;
+                            margin: 10px;
+                            padding: 5px 10px;
+                            background: $grey;
+                            color: $white;
+                            border: none;
+                            border-radius: 25px;
+                            cursor: pointer;
+                            outline: none;
+                        }
+                    }
                     .content-visibility {display: none;}
                     .content-active {display: block;}
                 }
