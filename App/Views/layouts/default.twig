@@ -43,7 +43,6 @@
             this.y = parseFloat($(this).attr('data-y'));
             constellationId = parseInt($(this).attr('data-id'));
             planetarium.constellationLine = true;
-            planetarium.draw(undefined);
             planetarium.panTo(this.x, this.y, 3000);
         });
     });

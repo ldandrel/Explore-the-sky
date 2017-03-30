@@ -195,6 +195,7 @@ function constellation(id) {
                 // Success
                 if (xhr.status === 200) {
 
+
                     // Display the container-informations, reduce the slider's width and the skymap, and move the user informations
                     content.el.container_informations.classList.add('container-informations-active');
                     content.el.slider.style.width = '70%';
@@ -212,9 +213,8 @@ function constellation(id) {
                     var result = JSON.parse(xhr.responseText);
                     var neighbors_name = '';
 
-
                     for (var i = 0; i < result['neighbors_name'].length; i++) {
-                        neighbors_name += '<button class="bordering-element" onclick="constellation('+result['neighbors_id'][i]+')">' + result['neighbors_name'][i] + '</button>';
+                        neighbors_name += '<button class="bordering-element" onclick="constellation('+result['neighbors_id'][i]+');  planetarium.panTo('+result['neighbors_ra'][i]+', '+result['neighbors_dec'][i]+', 3000); constellationId = '+(result['neighbors_id'][i]-1)+';">' + result['neighbors_name'][i] + '</button>';
                     }
 
 

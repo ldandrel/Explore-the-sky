@@ -59,24 +59,39 @@ class Constellation extends Controller
 
         header('Content-Type: application/json');
 
+
         if(isset($_GET['id']) || isset($_GET['iau']) || isset($_GET['name'])) {
             $results = $model -> find($id,$iau,$name);
             foreach ($results as $result) {
                 $neighbors = $result['neighbor'];
                 $neighbors = $model -> find($neighbors,$iau,$name);
 
+
+
                 foreach ($neighbors as $neighbor) {
-                    $neighbor = $neighbor['name'];
-                    $items[] =  $neighbor;
+                    $neighbor_name[] = $neighbor['name'];
+                    $neighbor_ra[] = $neighbor['ra'];
+                    $neighbor_dec[] = $neighbor['declinaison'];
+                    $neighbor_id[] = $neighbor['id'];
+
+
                 }
 
-                $neighbor_id = explode(",", $result['neighbor']);
 
-                $data['neighbors_name'] = $items;
+
+
+
+
+
+
+
+                $data['neighbors_name'] = $neighbor_name;
+                $data['neighbors_ra'] = $neighbor_ra;
+                $data['neighbors_dec'] = $neighbor_dec;
                 $data['neighbors_id'] = $neighbor_id;
                 $data['constellation'] = $results;
                 $data['constellation'][0]['images'] = Config::URL . 'assets/' . $data['constellation'][0]['images'];
-                echo json_encode($data);
+               echo json_encode($data);
             }
 
         } else {
