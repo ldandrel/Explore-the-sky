@@ -2,7 +2,18 @@
 
 {% block content %}
 
-<body>
-<h1>404 : Page not found</h1>
+<body class="body-index">
+<section class="container-landing" style="background-image:url('{{ asset('img/bg.png') }}');">
+    <!-- Name of the website -->
+    <div class="logo">
+        <img src="{{ asset('img/logo_sky.png') }}" alt="Logo of the website">
+    </div>
+    <!-- Explains how to navigate in the website -->
+    <h2>404 error</h2>
+    <p>Oups... You are lost ?</p>
+    <!-- Input for the city that the user enter -->
+    <a class="button-home" href="">Return to the home</a>
+
+</section>
 
 {% endblock %}

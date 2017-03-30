@@ -17,6 +17,8 @@ $router = new Core\Router();
 // Add the routes
 $router->add('', ['controller' => 'Constellation', 'action' => 'Constellation']);
 $router->add('welcome', ['controller' => 'Constellation', 'action' => 'Welcome']);
+$router->add('meteo', ['controller' => 'Constellation', 'action' => 'meteo']);
+
 $router->add('api/constellations/', ['controller' => 'Constellation', 'action' => 'api']);
 
 

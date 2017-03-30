@@ -28,18 +28,30 @@ class Constellation extends Controller
 
     public function Welcome()
     {
-
         if(isset($_POST['start'])){
             $_SESSION['start'] = true;
             App::redirect();
         }
-
 
         View::renderTemplate('pages/welcome.twig', [
             'title' => 'Welcome'
         ]);
     }
 
+
+    public function Meteo() {
+        if(isset($_GET['city'])){
+            $model = new MeteoModel();
+            $city = $model -> city ($_GET['city']);
+
+            $meteo = $model -> meteo($city['address']);
+            $data = ['city' => $city, 'meteo' => $meteo];
+            var_dump($data);
+
+        }
+
+        View::renderTemplate('pages/test.twig', []);
+    }
 
     public function api(){
         $model = new ConstellationModel();

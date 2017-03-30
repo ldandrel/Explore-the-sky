@@ -6,29 +6,23 @@ use Cmfcmf\OpenWeatherMap\Exception as OWMException;
 
 class MeteoModel extends Model
 {
-    public static function meteo($address)
+    public static function meteo($city)
     {
-        static $weather;
-
-// Language of data (try your own language here!):
         $lang = 'fr';
-
-// Units (can be 'metric' or 'imperial' [default]):
         $units = 'metric';
 
-// Create OpenWeatherMap object.
-// Don't use caching (take a look into Examples/Cache.php to see how it works).
         $owm = new OpenWeatherMap('6d12398b89b0ee175ad413d00b422e75');
 
         try {
-            $weather = $owm->getWeather('Berlin', $units, $lang);
+            $weather = $owm->getWeather($city, $units, $lang);
         } catch (OWMException $e) {
             return 'OpenWeatherMap exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').';
         } catch (\Exception $e) {
             return 'General exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').';
         }
 
-        return $weather->temperature;
+        return ['icon' => 'http:' . $weather->weather->getIconUrl(), 'sunrise' => $weather->sun->rise->format('H\hi'), 'sunset' =>  $weather->sun->set->format('H\hi')];
+
     }
 
     public static function city($address)
@@ -61,16 +55,9 @@ class MeteoModel extends Model
                 if($lati && $longi && $formatted_address){
 
                     // put the data in the array
-                    $data_arr = array();
+                    $data = ['lati' => $lati, 'longi' => $longi, 'address' => $formatted_address];
 
-                    array_push(
-                        $data_arr,
-                        $lati,
-                        $longi,
-                        $formatted_address
-                    );
-
-                    return $data_arr;
+                    return $data;
 
                 }else{
                     return false;
