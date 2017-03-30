@@ -25,9 +25,11 @@ content.el.navigation_environment = content.el.container_informations.querySelec
 content.el.navigation_visibility  = content.el.container_informations.querySelector('.navigation-visibility');
 content.el.progress_bar           = content.el.container_informations.querySelector('.progress-bar');
 content.el.content                = content.el.container_informations.querySelectorAll('.content');
+content.el.title_constellation    = content.el.container_informations.querySelector('.title-constellation');
 content.el.content_history        = content.el.container_informations.querySelector('.content-history');
 content.el.content_environment    = content.el.container_informations.querySelector('.content-environment');
 content.el.content_visibility     = content.el.container_informations.querySelector('.content-visibility');
+content.el.informations_background = content.el.container_informations.querySelector('.informations-background');
 
 /* The drag and drop for the slider
 *
@@ -65,7 +67,7 @@ function move(e) {
 };
 
 // Click on the left arrow and translate de slider
-content.el.left_arrow.addEventListener('click', function() {
+content.el.right_arrow.addEventListener('click', function() {
     if(mouse_up_pos == 0)
     {
         content.el.container_slides.style.transform = 'translateX(-100px)';
@@ -78,7 +80,7 @@ content.el.left_arrow.addEventListener('click', function() {
 });
 
 // Click on the left arrow and translate de slider
-content.el.right_arrow.addEventListener('click', function() {
+content.el.left_arrow.addEventListener('click', function() {
     if(mouse_up_pos == 0)
     {
         content.el.container_slides.style.transform = 'translateX(100px)';
@@ -90,60 +92,12 @@ content.el.right_arrow.addEventListener('click', function() {
     }
 });
 
-
-/* Constellation function
-*
-*/
-
-function constellation(id) {
-    // Display the container-informations, reduce the slider's width and the skymap
-    content.el.container_informations.classList.add('container-informations-active');
-    content.el.slider.style.width = '70%';
-    content.el.skymap.style.width = '70%';
-
-    this.search = function (value, order) {
-// Instanciate request
-        var xhr = new XMLHttpRequest();
-
-// Ready stage change callback
-        xhr.onreadystatechange = function () {
-            // Is done
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                // Success
-                if (xhr.status === 200) {
-                    var result = JSON.parse(xhr.responseText);
-                    console.log('success');
-                    console.log(result);
-                    for (var i = 0; i < result.length; i++) {
-
-                       console.log(result.name);
-                    };
-                }
-                else {
-                    console.log('error');
-                }
-            }
-        };
-
-// Open request
-        xhr.open("GET", "api/constellations/?id=" + id, true);
-// Send request
-        xhr.send();
-    }
-}
-
-constellation(12);
-
 /*
-* The container informations
-*/
+ * The container informations
+ */
 
-// Close the container informations
-content.el.cross.addEventListener('click', function(){
-    content.el.container_informations.classList.remove('container-informations-active');
-    content.el.slider.style.width = '100%';
-    content.el.skymap.style.width = '100%';
-});
+
+
 
 // Manage the nav bar with the good content
 for (var i = 0; i < content.el.navigation.length; i++) {
@@ -192,8 +146,107 @@ function remove_active_content()
     }
 }
 
-// console.log(content.el.container_informations.classList.contains('container-informations-active'));
-// if(content.el.container_informations.classList.contains('container-informations-active'))
-// {
-//     content.el.slider.style.width = '70%';
-// }
+
+// Close the container informations
+content.el.cross.addEventListener('click', function(){
+    content.el.container_informations.classList.remove('container-informations-active');
+    content.el.slider.style.width = '100%';
+    content.el.skymap.style.width = '100%';
+});
+
+
+
+/*
+* Constellation function
+*/
+
+function constellation(id) {
+
+// Instanciate request
+        var xhr = new XMLHttpRequest();
+
+// Ready stage change callback
+        xhr.onreadystatechange = function () {
+            // Is done
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                // Success
+                if (xhr.status === 200) {
+
+                    // Display the container-informations, reduce the slider's width and the skymap
+                    content.el.container_informations.classList.add('container-informations-active');
+                    content.el.slider.style.width = '70%';
+                    content.el.skymap.style.width = '70%';
+
+
+                    var result = JSON.parse(xhr.responseText);
+                    console.log(result);
+                    var neighbors_name = '';
+
+                    for (var i = 0; i < result['neighbors_name'].length; i++) {
+                        neighbors_name += '<li class="bordering-element">' + result['neighbors_name'][i] + '</li>';
+                    }
+
+
+
+                    content.el.title_constellation.innerHTML = null;
+                    content.el.title_constellation.innerHTML +=
+                        '<h2 class="informations-name">'+result['constellation'][0].name+'</h2>' +
+                        '<h2 class="informations-genitif">'+result['constellation'][0].genetive+'</h2>'
+                    ;
+
+                    content.el.content_history.innerHTML = null;
+                    content.el.content_history.innerHTML +=
+                        '<h2 class="history-title">History</h2>' +
+                            '<p class="history-text">'+result['constellation'][0].history+'</p>' +
+                        '<h3 class="family-title">Family</h3>' +
+                            '<p class="family-text">'+result['constellation'][0].family+'</p>' +
+                        '<h3 class="origin-title">Origin</h3>' +
+                            '<p class="origin-text">'+result['constellation'][0].origin+'</p>' +
+                        '<h3 class="meaning-title">Meaning</h3>' +
+                         '<p class="meaning-text">'+result['constellation'][0].meaning+'</p>';
+
+                    content.el.content_environment.innerHTML = null;
+                    content.el.content_environment.innerHTML +=
+                        '<h2 class="environment-title">Environment</h2>' +
+                        '<h3 class="brightest-star-title">The brightest star</h3>' +
+                        '<p class="brightest-star-text">'+result['constellation'][0].star+'</p>' +
+                        '<h3 class="bordering-title">The boundary constellations</h3>' +
+                        '<ul class="bordering-list">' +
+                             neighbors_name +
+                        '</ul>'
+                    ;
+
+                    content.el.content_visibility.innerHTML = null;
+                    content.el.content_visibility.innerHTML +=
+                        '<h2 class="visibility-title">Visibility</h2>' +
+                        '<p class="visibility-text">'+result['constellation'][0].visibility+'</p>' +
+                        '<h3 class="optimal-title">Optimal visibility</h3>' +
+                        '<p class="optimal-text">'+result['constellation'][0].date_best_visibility+'</p>' +
+                        '<h3 class="height-title">Constellation\'s height</h3>' +
+                        '<p class="height-text">'+result['constellation'][0].size+'</p>'
+                    ;
+
+                    content.el.informations_background.innerHTML = null;
+                    content.el.informations_background.innerHTML +=
+                        '<img src="'+result['constellation'][0].images+'" alt="Background of ' + result['constellation'][0].name + ' constellation ">'
+                    ;
+
+                }
+                else {
+                    console.log('error');
+                }
+            }
+        };
+
+// Open request
+        xhr.open("GET", "api/constellations/?id=" + id, true);
+// Send request
+        xhr.send();
+
+}
+
+
+
+
+
+

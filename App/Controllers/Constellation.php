@@ -6,6 +6,7 @@ use App\Models\MeteoModel;
 use \Core\View;
 use \Core\App;
 use \App\Models\ConstellationModel;
+use \App\Config;
 use \App\Controllers\Controller;
 
 class Constellation extends Controller
@@ -63,8 +64,10 @@ class Constellation extends Controller
                     $neighbor = $neighbor['name'];
                     $items[] =  $neighbor;
                 }
+
                 $data['neighbors_name'] = $items;
                 $data['constellation'] = $results;
+                $data['constellation'][0]['images'] = Config::URL . 'assets/' . $data['constellation'][0]['images'];
                 echo json_encode($data);
             }
 
