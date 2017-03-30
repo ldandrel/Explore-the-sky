@@ -6,7 +6,7 @@ var content = {};
 
 content.el = {};
 
-// Variable for the skymap
+// Variables for the skymap
 content.el.skymap                 = document.querySelector('#container-skymap');
 
 // Variable for the user's informations
@@ -200,6 +200,11 @@ function constellation(id) {
                     content.el.container_informations.classList.add('container-informations-active');
                     content.el.slider.style.width = '70%';
                     content.el.skymap.style.width = '70%';
+
+                    content.el.canvas = document.querySelector('#container-skymap_inner');
+                    content.el.canvas.style.width = '100%';
+                    content.el.canvas.style.height = '100%';
+
                     content.el.user_informations.style.transform = 'translateX(130%)';
 
                     // Add class active for the slide
