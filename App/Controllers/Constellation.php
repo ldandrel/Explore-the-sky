@@ -47,9 +47,7 @@ class Constellation extends Controller
             $meteo = $model -> meteo($city['address']);
             $data = ['city' => $city, 'meteo' => $meteo];
             var_dump($data);
-
         }
-
         View::renderTemplate('pages/test.twig', []);
     }
 
@@ -72,7 +70,10 @@ class Constellation extends Controller
                     $items[] =  $neighbor;
                 }
 
+                $neighbor_id = explode(",", $result['neighbor']);
+
                 $data['neighbors_name'] = $items;
+                $data['neighbors_id'] = $neighbor_id;
                 $data['constellation'] = $results;
                 $data['constellation'][0]['images'] = Config::URL . 'assets/' . $data['constellation'][0]['images'];
                 echo json_encode($data);

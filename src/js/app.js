@@ -212,8 +212,9 @@ function constellation(id) {
                     var result = JSON.parse(xhr.responseText);
                     var neighbors_name = '';
 
+
                     for (var i = 0; i < result['neighbors_name'].length; i++) {
-                        neighbors_name += '<li class="bordering-element">' + result['neighbors_name'][i] + '</li>';
+                        neighbors_name += '<button class="bordering-element" onclick="constellation('+result['neighbors_id'][i]+')">' + result['neighbors_name'][i] + '</button>';
                     }
 
 
