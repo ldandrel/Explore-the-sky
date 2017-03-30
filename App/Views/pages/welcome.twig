@@ -12,11 +12,11 @@
     <h2>How to navigate on the website ?</h2>
     <p>Drag and drop the sky to navigate in the constellations. Click on a bubble in the slider to see the information of the constellation you choose.</p>
     <!-- Input for the city that the user enter -->
-    <form action="welcome" method="get">
-        <input type="submit" value="Let's go">
+    <form action="welcome" method="post">
+        <input type="submit" value="Start" name="start">
     </form>
 
-    <img class="bg" src="{{ assets('img/bg.png') }}" alt="Image of the sky">
+    <img class="bg" src="{{ asset('img/bg.png') }}" alt="Image of the sky">
 </section>
 
 {% endblock %}

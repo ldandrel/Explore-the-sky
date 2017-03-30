@@ -11,7 +11,7 @@ class App
     }
 
     public static function secured() {
-        if(!isset($_SESSION['city']) || $_SESSION['city'] == false) {
+        if(isset($_SESSION['start']) != true) {
             self::redirect('welcome');
             exit;
         }

@@ -18,9 +18,9 @@ class Constellation extends Controller
         $data = $model->all();
         App::secured();
         View::renderTemplate('pages/index.twig', [
-            'city' => $_SESSION['city'][2],
-            'lat' => $_SESSION['city'][0],
-            'long' => $_SESSION['city'][1],
+            'city' => (isset($_SESSION['city']) ? $_SESSION['city'] : 'Paris, France'),
+            'lat' => (isset($_SESSION['city']) ? $_SESSION['city'] : 'false'),
+            'long' => (isset($_SESSION['city']) ? $_SESSION['city'] : 'false'),
             'date' => date_default_timezone_get(),
             'constellations' => $data
         ]);
@@ -29,13 +29,8 @@ class Constellation extends Controller
     public function Welcome()
     {
 
-
-        $model = new MeteoModel();
-        $city = (isset($_GET['city']) ? $_GET['city'] : '');
-
-        // $model->meteo($city);
-        if($city = $model->city($city)){
-            $_SESSION['city'] = $city;
+        if(isset($_POST['start'])){
+            $_SESSION['start'] = true;
             App::redirect();
         }
 
