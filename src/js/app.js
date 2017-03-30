@@ -192,7 +192,44 @@ var search ='';
 //Listener keyup for ajex request
 content.el.search.addEventListener('keyup', function () {
          search = this.value;
-    console.log(search);
+    content.el.container_slides.innerHTML = "";
+    // Instanciate request
+    var xhr = new XMLHttpRequest();
+
+// Ready stage change callback
+    xhr.onreadystatechange = function () {
+        // Is done
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            // Success
+            if (xhr.status === 200) {
+
+                var result = JSON.parse(xhr.responseText);
+
+                for (var i = 0; i < result['constellation'].length; i++) {
+
+                    content.el.container_slides.innerHTML +=
+                        '<div class="slide">' +
+                            '<span class="name-constellation">'+result['constellation'][i]['name']+'</span>' +
+                            '<button id="'+result['constellation'][i]['id']+'" onclick="constellation(id='+result['constellation'][i]['id']+')" data-x="'+result['constellation'][i]['ra']+'" data-y="'+result['constellation'][i]['dec']+'" data-id="'+(result['constellation'][i]['id']-1)+'" class="button-constellation"></button>' +
+                        '</div>'
+                    ;
+
+
+                }
+
+
+
+            }
+            else {
+                console.log('error');
+            }
+        }
+    };
+
+// Open request
+    xhr.open("GET", "api/constellations/?name=" + search, true);
+// Send request
+    xhr.send();
 });
 
 
@@ -240,7 +277,7 @@ function constellation(id) {
                     }
 
 
-
+                    //print result in information container
                     content.el.title_constellation.innerHTML = null;
                     content.el.title_constellation.innerHTML +=
                         '<h2 class="informations-name">'+result['constellation'][0].name+'</h2>' +

@@ -62,34 +62,36 @@ class Constellation extends Controller
 
         header('Content-Type: application/json');
 
-        if (strlen($id) > 1){
+        if (strpos($id, ',')){
             $data[] = ['error' => 'You can request just one id'];
-        } else if (isset($_GET['id']) || isset($_GET['name'])) {
-            $results = $model -> find($id,$name);
-            if(isset($_GET['id'])){
-                foreach ($results as $result) {
-                    $neighbors = $result['neighbor'];
-                    $neighbors = $model -> find($neighbors,$name);
+        } else if (isset($id) || isset($name)) {
+            if(empty($name) && empty($id)){
+                $data['constellation'] = $model -> all();
+            } else {
+                $results = $model->find($id, $name);
+                if (isset($_GET['id'])) {
+                    foreach ($results as $result) {
+                        $neighbors = $result['neighbor'];
+                        $neighbors = $model->find($neighbors, $name);
 
-                    foreach ($neighbors as $neighbor) {
-                        $neighbor_name[] = $neighbor['name'];
-                        $neighbor_ra[] = $neighbor['ra'];
-                        $neighbor_dec[] = $neighbor['declinaison'];
-                        $neighbor_id[] = $neighbor['id'];
+                        foreach ($neighbors as $neighbor) {
+                            $neighbor_name[] = $neighbor['name'];
+                            $neighbor_ra[] = $neighbor['ra'];
+                            $neighbor_dec[] = $neighbor['declinaison'];
+                            $neighbor_id[] = $neighbor['id'];
+                        }
+
+
+                        $data['neighbors_name'] = $neighbor_name;
+                        $data['neighbors_ra']   = $neighbor_ra;
+                        $data['neighbors_dec']  = $neighbor_dec;
+                        $data['neighbors_id']   = $neighbor_id;
                     }
-
-
-                    $data['neighbors_name'] = $neighbor_name;
-                    $data['neighbors_ra']   = $neighbor_ra;
-                    $data['neighbors_dec']  = $neighbor_dec;
-                    $data['neighbors_id']   = $neighbor_id;
                 }
+
+                $data['constellation'] = $results;
+                $data['constellation'][0]['images'] = Config::URL . 'assets/' . $data['constellation'][0]['images'];
             }
-
-            $data['constellation'] = $results;
-            $data['constellation'][0]['images'] = Config::URL . 'assets/' . $data['constellation'][0]['images'];
-
-
 
         } else {
             $data = $model -> all();
