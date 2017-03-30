@@ -49,6 +49,11 @@
             planetarium.constellationLine = true;
             planetarium.panTo(this.x, this.y, 3000);
         });
+        $('.zoom').change(function () {
+            var fov = parseFloat($(this).val());
+            planetarium.setFOV(fov).draw();
+
+        });
     });
 </script>
 <script src="{{ asset('js/app.js') }}"></script>
