@@ -39,8 +39,8 @@ body.body-space
         .search-constellation
         {
             position: absolute;
-            top: 25px;
-            right: 50px;
+            bottom: 110px;
+            left: -3px;
             z-index: 20;
 
             form
@@ -48,17 +48,17 @@ body.body-space
 
                 input.search
                 {
-                    padding: 10px 15px;
-                    border: 3px solid $first-color;
-                    border-radius: 30px;
+                    padding: 10px 10px 10px 50px;
+                    border: 3px solid $darkgrey;
+                    border-radius: 0 50px 50px 0;
                     outline: none;
                     background: transparent;
-                    color: $first-color;
+                    color: $darkgrey;
                     font-family: $main-font;
 
                     &::placeholder
                     {
-                        color: $first-color;
+                        color: $darkgrey;
                         opacity: 0.7;
                     }
                 }
@@ -72,6 +72,7 @@ body.body-space
             top: 25px;
             left: 50px;
             z-index: 20;
+            user-select: none;
 
             .form-city
             {
@@ -122,10 +123,21 @@ body.body-space
             }
         }
 
+        /* Zoom */
+        .zoom
+        {
+            position: absolute;
+            top: 400px;
+            left: 0px;
+            z-index: 20;
+            transform: rotate(90deg);
+            background: red;
+        }
+
         /* Container of the skymap */
         #container-skymap
         {
-            height: 85%;
+            height: 90%;
             width: 100%;
             position: absolute;
             top: 0;
@@ -153,7 +165,7 @@ body.body-space
         /* Container of the slider */
         .container-slider
         {
-            height: 15%;
+            height: 12%;
             width: 100%;
             position: absolute;
             bottom: 0;
@@ -226,7 +238,7 @@ body.body-space
                             .name-constellation
                             {
                                 position: absolute;
-                                top: calc(50% - 35px);
+                                top: calc(50% - 20px);
                                 left: 50%;
                                 transform: translateX(-50%);
                                 text-transform: uppercase;
@@ -244,7 +256,7 @@ body.body-space
                                 height: 15px;
                                 width: 15px;
                                 position: absolute;
-                                top: calc(50% - 2px);
+                                top: calc(50% + 10px);
                                 left: 45%;
                                 background: $white;
                                 border: none;
