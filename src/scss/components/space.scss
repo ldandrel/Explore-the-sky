@@ -20,7 +20,8 @@ body.body-space
             width: 75px;
             position: absolute;
             top: 25px;
-            left: 50px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 15;
             user-select: none;
             -moz-user-select: none;
@@ -34,18 +35,31 @@ body.body-space
             }
         }
 
-        /* User's informations */
-        .user-informations
+        /* Search a constellation */
+        .search-constellation
         {
             position: absolute;
             top: 50px;
             right: 50px;
             z-index: 20;
 
-            .date
+            form
             {
-                margin-left: 50px;
+                input.search
+                {
+
+                }
             }
+        }
+
+        /* User's informations */
+        .user-informations
+        {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            z-index: 20;
+            font-family: $data-font;
         }
 
         /* Container of the skymap */
