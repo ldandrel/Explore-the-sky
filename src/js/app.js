@@ -155,6 +155,7 @@ function close_container_informations()
     content.el.container_informations.classList.remove('container-informations-active');
     content.el.slider.style.width = '100%';
     content.el.skymap.style.width = '100%';
+    content.el.skymap.style.transform = 'translateX(0%)';
 
     for (var i = 0; i < content.el.container_slides.children.length; i++) {
         content.el.container_slides.children[i].classList.remove('slide-active');
@@ -173,7 +174,7 @@ content.el.container_informations.addEventListener('click', function(event){
     event.stopPropagation();
 });
 
-content.el.container_slides.addEventListener('click', function(event){
+content.el.slider.addEventListener('click', function(event){
     event.stopPropagation();
 });
 
@@ -199,13 +200,11 @@ function constellation(id) {
                     // Display the container-informations, reduce the slider's width and the skymap, and move the user informations
                     content.el.container_informations.classList.add('container-informations-active');
                     content.el.slider.style.width = '70%';
-                    content.el.skymap.style.width = '70%';
+                    content.el.skymap.style.transform = 'translateX(-15%)';
 
                     content.el.canvas = document.querySelector('#container-skymap_inner');
                     content.el.canvas.style.width = '100%';
                     content.el.canvas.style.height = '100%';
-
-                    content.el.user_informations.style.transform = 'translateX(130%)';
 
                     // Add class active for the slide
                     var element = document.getElementById(id);
