@@ -251,15 +251,15 @@ body.body-space
             height: 100%;
             width: 30%;
             transform: translateX(100%);
-            position: absolute;
+            position: fixed;
             top: 0;
             right: 0;
-            background: $third-color;
             box-shadow: $box-shadow;
             font-size: $text-size;
             z-index: 11;
             transition: transform 0.5s ease;
             overflow-y: scroll;
+            background: $third-color;
 
             .informations
             {
@@ -267,6 +267,7 @@ body.body-space
                 width: 100%;
                 position: relative;
                 padding-bottom: 100px;
+
 
                 // Cross
                 .cross
@@ -455,10 +456,8 @@ body.body-space
                     {
                         height: 100%;
                         width: auto;
-                        position: fixed;
-                        top: 0;
-                        left: 0;
                         opacity: 0.5;
+                        user-select: none;
                     }
                 }
             }

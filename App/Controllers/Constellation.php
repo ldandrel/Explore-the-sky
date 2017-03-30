@@ -19,8 +19,8 @@ class Constellation extends Controller
         App::secured();
         View::renderTemplate('pages/index.twig', [
             'city' => (isset($_SESSION['city']) ? $_SESSION['city'] : 'Paris, France'),
-            'lat' => (isset($_SESSION['city']) ? $_SESSION['city'] : 'false'),
-            'long' => (isset($_SESSION['city']) ? $_SESSION['city'] : 'false'),
+            'lat' => 'false',
+            'long' => 'false',
             'date' => date_default_timezone_get(),
             'constellations' => $data
         ]);

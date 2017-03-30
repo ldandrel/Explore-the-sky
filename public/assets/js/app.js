@@ -9,6 +9,9 @@ content.el = {};
 // Variable for the skymap
 content.el.skymap                 = document.querySelector('#container-skymap');
 
+// Variable for the user's informations
+content.el.user_informations      = document.querySelector('.user-informations');
+
 // Variables for the slider
 content.el.slider                 = document.querySelector('.container-slider');
 content.el.box_slides             = document.querySelector('.box-slides');
@@ -172,14 +175,14 @@ function constellation(id) {
                 // Success
                 if (xhr.status === 200) {
 
-                    // Display the container-informations, reduce the slider's width and the skymap
+                    // Display the container-informations, reduce the slider's width and the skymap, and move the user informations
                     content.el.container_informations.classList.add('container-informations-active');
                     content.el.slider.style.width = '70%';
                     content.el.skymap.style.width = '70%';
-                    // Add class active for the slide
+                    content.el.user_informations.style.transform = 'translateX(130%)';
 
+                    // Add class active for the slide
                     var element = document.getElementById(id);
-                    // console.log(content.el.container_slides.children.classList.contains);
                     for (var i = 0; i < content.el.container_slides.children.length; i++) {
                         content.el.container_slides.children[i].classList.remove('slide-active');
                     }
@@ -234,10 +237,7 @@ function constellation(id) {
                         '<p class="height-text">'+result['constellation'][0].size+'</p>'
                     ;
 
-                    content.el.informations_background.innerHTML = null;
-                    content.el.informations_background.innerHTML +=
-                        '<img src="'+result['constellation'][0].images+'" alt="Background of ' + result['constellation'][0].name + ' constellation ">'
-                    ;
+                    content.el.container_informations.style.backgroundImage = 'url(' + result['constellation'][0].images + ')';
 
                 }
                 else {
