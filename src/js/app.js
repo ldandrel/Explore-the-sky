@@ -61,7 +61,6 @@ function mouseDown(e) {
     window.addEventListener('mousemove', move, true);
 }
 
-console.log('test');
 // Listen the mouse move and attribute the new translateX to the slider
 function move(e) {
     var mouse = e.clientX;
@@ -150,11 +149,32 @@ function remove_active_content()
 }
 
 
-// Close the container informations
-content.el.cross.addEventListener('click', function(){
+// Close the container informations with the cross or the click everywhere on the page (except the container informations)
+function close_container_informations()
+{
     content.el.container_informations.classList.remove('container-informations-active');
     content.el.slider.style.width = '100%';
     content.el.skymap.style.width = '100%';
+
+    for (var i = 0; i < content.el.container_slides.children.length; i++) {
+        content.el.container_slides.children[i].classList.remove('slide-active');
+    }
+}
+
+content.el.cross.addEventListener('click', function(){
+    close_container_informations();
+});
+
+document.addEventListener('click', function(){
+    close_container_informations();
+});
+
+content.el.container_informations.addEventListener('click', function(event){
+    event.stopPropagation();
+});
+
+content.el.container_slides.addEventListener('click', function(event){
+    event.stopPropagation();
 });
 
 
@@ -190,7 +210,6 @@ function constellation(id) {
 
 
                     var result = JSON.parse(xhr.responseText);
-                    console.log(result);
                     var neighbors_name = '';
 
                     for (var i = 0; i < result['neighbors_name'].length; i++) {
