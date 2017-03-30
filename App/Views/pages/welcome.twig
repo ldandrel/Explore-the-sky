@@ -3,7 +3,7 @@
 {% block content %}
 
 <body class="body-index">
-<section class="container-landing">
+<section class="container-landing" style="background-image:url('{{ asset('img/bg.png') }}');">
     <!-- Name of the website -->
     <div class="logo">
         <img src="{{ asset('img/logo_sky.png') }}" alt="Logo of the website">
@@ -15,8 +15,6 @@
     <form action="welcome" method="post">
         <input type="submit" value="Start" name="start">
     </form>
-
-    <img class="bg" src="{{ asset('img/bg.png') }}" alt="Image of the sky">
 </section>
 
 {% endblock %}
