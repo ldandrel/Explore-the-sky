@@ -163,10 +163,14 @@ function close_container_informations()
 
 content.el.cross.addEventListener('click', function(){
     close_container_informations();
+    constellationId = -1;
+    planetarium.draw();
 });
 
 document.addEventListener('click', function(){
     close_container_informations();
+    constellationId = -1;
+    planetarium.draw();
 });
 
 content.el.container_informations.addEventListener('click', function(event){

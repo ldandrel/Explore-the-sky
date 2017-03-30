@@ -17,12 +17,27 @@ class Constellation extends Controller
         $model = new ConstellationModel();
         $data = $model->all();
         App::secured();
+
+        if(isset($_POST['city'])){
+            $model = new MeteoModel();
+            $city = $model -> city ($_POST['city']);
+
+            $meteo = $model -> meteo($city['address']);
+            $data = ['city' => $city, 'meteo' => $meteo];
+            $_SESSION['data'] = $data;
+        }
+
+
+
         View::renderTemplate('pages/index.twig', [
-            'city' => (isset($_SESSION['city']) ? $_SESSION['city'] : 'Paris, France'),
-            'lat' => 'false',
-            'long' => 'false',
+            'city' => (isset($_SESSION['data']['city']['address']) ? $_SESSION['data']['city']['address'] : ''),
+            'lat' => (isset($_SESSION['data']['city']['lati']) ? $_SESSION['data']['city']['lati'] : 'false'),
+            'long' => (isset($_SESSION['data']['city']['longi']) ? $_SESSION['data']['city']['longi'] : 'false'),
+            'sunrise' => (isset($_SESSION['data']['meteo']['sunrise']) ? $_SESSION['data']['meteo']['sunrise'] : ''),
+            'sunset' => (isset($_SESSION['data']['meteo']['sunset']) ? $_SESSION['data']['meteo']['sunset'] : ''),
             'date' => date_default_timezone_get(),
-            'constellations' => $data
+            'constellations' => $data,
+            'meteo' => (isset($_SESSION['data']['meteo']['description']) ? $_SESSION['data']['meteo']['description'] : '')
         ]);
     }
 
@@ -39,17 +54,6 @@ class Constellation extends Controller
     }
 
 
-    public function Meteo() {
-        if(isset($_GET['city'])){
-            $model = new MeteoModel();
-            $city = $model -> city ($_GET['city']);
-
-            $meteo = $model -> meteo($city['address']);
-            $data = ['city' => $city, 'meteo' => $meteo];
-            var_dump($data);
-        }
-        View::renderTemplate('pages/test.twig', []);
-    }
 
     public function api(){
         $model = new ConstellationModel();

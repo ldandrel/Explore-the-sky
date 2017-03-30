@@ -39,12 +39,17 @@ class View
             });
 
             $date = new \Twig_Function('date', function ($original_date) {
-                return date("l, F jS Y", strtotime($original_date));
+                return date("m/d/Y", strtotime($original_date));
+            });
+
+            $hour = new \Twig_Function('hour', function ($original_hour) {
+                return date("h:i a", strtotime($original_hour));
             });
 
             $twig->addFunction($asset);
             $twig->addFunction($title);
             $twig->addFunction($date);
+            $twig->addFunction($hour);
 
 
         }

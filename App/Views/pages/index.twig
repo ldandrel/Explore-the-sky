@@ -19,12 +19,16 @@
                 <input type="text" name="city" placeholder="Enter your city">
             </form>
             <div class="city-informations">
-                <span class="date_day">30/03/2017</span>
-                <span class="hour_date">12:11 AM</span>
-                <span class="city">Paris, France</span>
-                <span class="infos">Sunrise: </span><span class="sunrise">05:11 AM</span>
-                <span class="infos">Sunset: </span><span class="sunset">09:12 PM</span>
-                <span class="weather">Cloudy</span>
+                <span class="date_day">{{ date(date) }}</span>
+                <span class="hour_date">{{ hour(date) }}</span>
+                <span class="city">{{ city }}</span>
+                {% if sunrise != '' %}
+                <span class="infos">Sunrise: </span><span class="sunrise">{{ sunrise }}</span>
+                {% endif %}
+                {% if sunset != '' %}
+                <span class="infos">Sunset: </span><span class="sunset">{{ sunset }}</span>
+                {% endif %}
+                <span class="weather">{{ meteo }}</span>
             </div>
         </section>
         <input class="zoom" type="range" min="10" max="60" step="0.1" />

@@ -8,7 +8,7 @@ class MeteoModel extends Model
 {
     public static function meteo($city)
     {
-        $lang = 'fr';
+        $lang = 'en';
         $units = 'metric';
 
         $owm = new OpenWeatherMap('6d12398b89b0ee175ad413d00b422e75');
@@ -21,7 +21,7 @@ class MeteoModel extends Model
             return 'General exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').';
         }
 
-        return ['icon' => 'http:' . $weather->weather->getIconUrl(), 'sunrise' => $weather->sun->rise->format('H\hi'), 'sunset' =>  $weather->sun->set->format('H\hi')];
+        return ['description' =>  $weather->clouds->getDescription(), 'sunrise' => $weather->sun->rise->format('h:i a'), 'sunset' =>  $weather->sun->set->format('h:i a')];
 
     }
 
