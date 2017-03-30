@@ -7,14 +7,13 @@ body.body-index
     font-size: $main-size;
     font-family: $main-font;
     color: $white;
-
     background-repeat: repeat-y;
 
     .container-landing
     {
         height: 100%;
         width: 100%;
-        background: rgba(#12122f, 0.87);
+        background-color: rgba(#12122f, 0.87);
 
         .logo
         {
@@ -46,23 +45,7 @@ body.body-index
 
         form
         {
-            input[type = "text"]
-            {
-                text-align: center;
-                padding: 10px;
-                border: 2px solid $first-color;
-                background: transparent;
-                color: $first-color;
-                outline: none;
-
-                &::placeholder
-                {
-                    color: $white;
-                    opacity: 0.2;
-                }
-            }
-
-            input[type = "submit"]
+            input[type = "submit"], .button-home
             {
                 height: 50px;
                 width: 140px;
@@ -79,24 +62,13 @@ body.body-index
                 border: none;
                 cursor: pointer;
                 transition: all 0.3s ease;
+                border-radius: 25px;
 
                 &:hover
                 {
-                    color: $first-color;
-                    background: transparent;
-                    border: 2px $first-color solid;
+                    color: $black;
                 }
             }
-        }
-
-        img.bg
-        {
-            height: auto;
-            width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -10;
         }
     }
 }
