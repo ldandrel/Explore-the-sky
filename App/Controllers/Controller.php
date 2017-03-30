@@ -29,11 +29,4 @@ class Controller
         }
     }
 
-    protected function before()
-    {
-    }
-
-    protected function after()
-    {
-    }
 }

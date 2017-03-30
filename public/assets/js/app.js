@@ -167,36 +167,31 @@ function close_container_informations()
 
 content.el.cross.addEventListener('click', function(){
     close_container_informations();
-    constellationId = '';
+    constellationId = null;
     planetarium.draw();
 });
 
-document.addEventListener('click', function(){
+content.el.skymap .addEventListener('click', function(){
     close_container_informations();
-    constellationId = '';
+    constellationId = null;
     planetarium.draw();
 });
 
-content.el.container_informations.addEventListener('click', function(event){
-    event.stopPropagation();
-});
 
-content.el.slider.addEventListener('click', function(event){
-    event.stopPropagation();
-});
 
 /*
  * Live search
  */
 var search ='';
+
 //Listener keyup for ajex request
 content.el.search.addEventListener('keyup', function () {
          search = this.value;
-    content.el.container_slides.innerHTML = "";
+console.log(constellationId);
     // Instanciate request
     var xhr = new XMLHttpRequest();
 
-// Ready stage change callback
+    // Ready stage change callback
     xhr.onreadystatechange = function () {
         // Is done
         if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -205,23 +200,23 @@ content.el.search.addEventListener('keyup', function () {
 
                 var result = JSON.parse(xhr.responseText);
 
+                content.el.container_slides.removeAttribute("style")
+                    content.el.container_slides.innerHTML = null;
                 for (var i = 0; i < result['constellation'].length; i++) {
 
                     content.el.container_slides.innerHTML +=
                         '<div class="slide">' +
                             '<span class="name-constellation">'+result['constellation'][i]['name']+'</span>' +
-                            '<button id="'+result['constellation'][i]['id']+'" onclick="constellation(id='+result['constellation'][i]['id']+')" data-x="'+result['constellation'][i]['ra']+'" data-y="'+result['constellation'][i]['dec']+'" data-id="'+(result['constellation'][i]['id']-1)+'" class="button-constellation"></button>' +
+                            '<button id="'+result['constellation'][i]['id']+'" onclick="constellation(id='+result['constellation'][i]['id']+'); planetarium.panTo('+result['constellation'][i]['ra']+', '+result['constellation'][i]['declinaison']+', 3000); constellationId = '+(result['constellation'][i]['id']-1)+'; planetarium.draw()"  class="button-constellation"></button>' +
                         '</div>'
                     ;
-
-
                 }
 
 
 
             }
             else {
-                console.log('error');
+                content.el.container_slides.innerHTML = null;
             }
         }
     };

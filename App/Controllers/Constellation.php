@@ -16,15 +16,27 @@ class Constellation extends Controller
     {
 
         App::secured();
-
+        $model = new MeteoModel();
+        $current_time = time();
         if(isset($_POST['city'])){
-            $model = new MeteoModel();
+
             $city = $model -> city ($_POST['city']);
 
             $meteo = $model -> meteo($city['address']);
-            $data = ['city' => $city, 'meteo' => $meteo];
+
+            $data = ['city' => $city, 'meteo' => $meteo, 'time' => $current_time];
             $_SESSION['data'] = $data;
         }
+
+        if(isset($_SESSION['time']) + 3600 > $current_time){
+
+            $meteo = $model -> meteo($city['address']);
+
+            $data = ['meteo' => $meteo, 'time' => $current_time];
+            $_SESSION['data'] = $data;
+        }
+
+
 
         $model = new ConstellationModel();
         $data = $model->all();
