@@ -115,7 +115,7 @@ for (var i = 0; i < content.el.navigation.length; i++) {
         {
             remove_active_content();
             content.el.content_history.classList.add('content-active');
-            content.el.progress_bar.style.transform = 'scaleX(0.2)';
+            content.el.progress_bar.style.transform = 'scaleX(0)';
             content.el.navigation_environment.style.background = '#6c0287';
         }
         else if(this.classList.contains( 'navigation-environment' ))
@@ -130,7 +130,7 @@ for (var i = 0; i < content.el.navigation.length; i++) {
         {
             remove_active_content();
             content.el.content_visibility.classList.add('content-active');
-            content.el.progress_bar.style.transform = 'scaleX(0.8)';
+            content.el.progress_bar.style.transform = 'scaleX(1)';
             content.el.navigation_history.style.background = '#dc0368';
             content.el.navigation_environment.style.background = '#dc0368';
         }
@@ -176,6 +176,14 @@ function constellation(id) {
                     content.el.container_informations.classList.add('container-informations-active');
                     content.el.slider.style.width = '70%';
                     content.el.skymap.style.width = '70%';
+                    // Add class active for the slide
+
+                    var element = document.getElementById(id);
+                    // console.log(content.el.container_slides.children.classList.contains);
+                    for (var i = 0; i < content.el.container_slides.children.length; i++) {
+                        content.el.container_slides.children[i].classList.remove('slide-active');
+                    }
+                    element.parentElement.classList.add('slide-active');
 
 
                     var result = JSON.parse(xhr.responseText);

@@ -30,7 +30,7 @@
                         {% for constellation in constellations %}
                         <div class="slide">
                             <span class="name-constellation">{{ constellation.name }}</span>
-                            <button id="{{ constellation.IAU }}" onclick="constellation(id={{ constellation.id }})" data-x="{{ constellation.ra }}" data-y="{{ constellation.declinaison }}" data-id="{{ constellation.id - 1 }}" class="button-constellation"></button>
+                            <button id="{{ constellation.id }}" onclick="constellation(id={{ constellation.id }})" data-x="{{ constellation.ra }}" data-y="{{ constellation.declinaison }}" data-id="{{ constellation.id - 1 }}" class="button-constellation"></button>
                         </div>
                         {% endfor %}
                     </div>
