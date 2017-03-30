@@ -22,6 +22,10 @@ body.body-space
             top: 25px;
             left: 50px;
             z-index: 15;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
 
             img
             {
@@ -54,6 +58,22 @@ body.body-space
             left: 0;
             background: grey;
             z-index: 9;
+
+            .container-skymap_clock
+            {
+                user-select: none;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+            }
+
+            .container-skymap_position
+            {
+                user-select: none;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+            }
         }
 
         /* Container of the slider */
@@ -259,6 +279,7 @@ body.body-space
                     cursor: pointer;
                     opacity: 0.3;
                     transition: opacity 0.3s ease;
+                    z-index: 30;
 
                     &:hover
                     {
@@ -425,12 +446,18 @@ body.body-space
                 {
                     height: 100%;
                     width: 100%;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
                     opacity: 0.1;
 
                     img
                     {
                         height: 100%;
                         width: auto;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
                         opacity: 0.5;
                     }
                 }
