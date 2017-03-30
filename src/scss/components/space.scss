@@ -422,6 +422,9 @@ body.body-space
             z-index: 11;
             transition: transform 0.5s ease;
             background: $third-color;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
             padding-bottom: 50px;
             overflow-y: scroll;
 
