@@ -58,12 +58,14 @@ function mouseDown(e) {
     window.addEventListener('mousemove', move, true);
 }
 
+console.log('test');
 // Listen the mouse move and attribute the new translateX to the slider
 function move(e) {
     var mouse = e.clientX;
     var offset = mouse_initial_pos - mouse;
-
-    content.el.container_slides.style.transform = 'translateX(' + (transform_initial_pos - offset) +'px)';
+    if (transform_initial_pos - offset <= 0 && transform_initial_pos - offset >= -12260 ) {
+        content.el.container_slides.style.transform = 'translateX(' + (transform_initial_pos - offset) + 'px)';
+    }
 };
 
 // Click on the left arrow and translate de slider
@@ -83,7 +85,7 @@ content.el.right_arrow.addEventListener('click', function() {
 content.el.left_arrow.addEventListener('click', function() {
     if(mouse_up_pos == 0)
     {
-        content.el.container_slides.style.transform = 'translateX(100px)';
+        content.el.container_slides.style.transform = 'translateX(0px)';
         mouse_up_pos = -100;
     }
     else

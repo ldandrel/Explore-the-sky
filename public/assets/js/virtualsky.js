@@ -15,7 +15,7 @@
 			});
 		// -->
 		</script>
-		
+
 	OPTIONS (default values in brackets):
 		id ('starmap') - The ID for the HTML element where you want the sky inserted
 		projection ('polar') - The projection type as 'polar', 'stereo', 'lambert', 'equirectangular', or 'ortho'
@@ -1164,7 +1164,7 @@
         if (typeof file !== "string") return this;
         var dt = file.match(/\.json$/i) ? "json" : "script";
         if (dt == "script") {
-            // If we are loading an external script we need to make sure we initiate 
+            // If we are loading an external script we need to make sure we initiate
             // it first. To do that we will re-write the callback that was provided.
             var tmp = callback;
             callback = function (data) {
@@ -2185,14 +2185,11 @@
         if (this.container.find('.' + this.id + '_clock').length == 0) this.container.append('<div class="' + this.id + '_clock" title="' + this.getPhrase('datechange') + '">' + clockstring + '</div>');
         var off = $('#' + this.idinner).position();
         this.container.find('.' + this.id + '_clock').css({
-            position: 'absolute',
             padding: 0,
             width: metric_clock,
-            cursor: 'pointer',
             top: off.top + 5,
             left: off.left + 5,
-            zIndex: 20,
-            display: 'block',
+            display: 'none',
             overflow: 'hidden',
             backgroundColor: 'transparent',
             fontSize: fontsize + 'px',
@@ -2231,15 +2228,12 @@
         if ($('.' + this.id + '_position').length == 0) this.container.append('<div class="' + this.id + '_position" title="' + this.getPhrase('positionchange') + '">' + positionstring + '</div>');
         var off = $('#' + this.idinner).position();
         $('.' + this.id + '_position').css({
-            position: 'absolute',
             padding: 0,
             width: metric_pos,
-            cursor: 'pointer',
             top: off.top + 5 + fontsize,
             left: off.left + 5,
-            zIndex: 20,
             fontSize: fontsize + 'px',
-            display: 'block',
+            display: 'none',
             overflow: 'hidden',
             backgroundColor: 'transparent',
             fontSize: fontsize + 'px',
@@ -2685,7 +2679,7 @@
         // Draw the boundaries of constellations
         // Input: colour (e.g. "rgb(255,255,0)")
         // We should have all the boundary points stored in this.boundaries. As many of the constellations
-        // will share boundaries we don't want to bother drawing lines that we've already done so we will 
+        // will share boundaries we don't want to bother drawing lines that we've already done so we will
         // keep a record of the lines we've drawn as we go. As some segments may be large on the sky we will
         // interpolate a few points between so that boundaries follow the curvature of the projection better.
         // As the boundaries are in FK1 we will calculate the J2000 positions once and keep them cached as
@@ -2730,7 +2724,7 @@
                                 if (ra > 180) ra = ra - 360;
                                 if (ra < -180) ra = ra + 360;
                                 dc = (b[1] - a[1]);
-                                // If we've already done this line we'll only calculate 
+                                // If we've already done this line we'll only calculate
                                 // two points on the line otherwise we'll do 5
                                 n = (move) ? 5 : 2;
                                 if (ra / 2 > n) n = parseInt(ra);
@@ -3025,7 +3019,7 @@
                 old.moved = true;
             } else {
                 // If the last point on s contour is more than a canvas width away
-                // it is probably supposed to be behind us so we won't draw a line 
+                // it is probably supposed to be behind us so we won't draw a line
                 if (!old.moved || Math.sqrt(Math.pow(old.x - x, 2) + Math.pow(old.y - y, 2)) > maxl) {
                     c.moveTo(x, y);
                     old.moved = true;
@@ -3356,7 +3350,7 @@
         else {
             var t = 1.0 / this.fps;
             var s = 2;
-            // this.spin is the number of seconds to update the clock by 
+            // this.spin is the number of seconds to update the clock by
             if (this.spin == 0) this.spin = (tick == "up") ? t : -t;
             else {
                 if (Math.abs(this.spin) < 1) s *= 2;
