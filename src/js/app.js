@@ -179,6 +179,8 @@ content.el.skymap .addEventListener('click', function(){
 
 
 
+
+
 /*
  * Live search
  */
@@ -187,45 +189,49 @@ var search ='';
 //Listener keyup for ajex request
 content.el.search.addEventListener('keyup', function () {
          search = this.value;
-console.log(constellationId);
-    // Instanciate request
-    var xhr = new XMLHttpRequest();
+         live_search(search);
+});
 
-    // Ready stage change callback
-    xhr.onreadystatechange = function () {
-        // Is done
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            // Success
-            if (xhr.status === 200) {
+function live_search(search){
+    if(search.length % 2 == 0 || search.length < 2) {
+        // Instanciate request
+        var xhr = new XMLHttpRequest();
 
-                var result = JSON.parse(xhr.responseText);
+        // Ready stage change callback
+        xhr.onreadystatechange = function () {
+            // Is done
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                // Success
+                if (xhr.status === 200) {
 
-                content.el.container_slides.removeAttribute("style")
+                    var result = JSON.parse(xhr.responseText);
+
+                    content.el.container_slides.removeAttribute("style")
                     content.el.container_slides.innerHTML = null;
-                for (var i = 0; i < result['constellation'].length; i++) {
+                    for (var i = 0; i < result['constellation'].length; i++) {
 
-                    content.el.container_slides.innerHTML +=
-                        '<div class="slide">' +
-                            '<span class="name-constellation">'+result['constellation'][i]['name']+'</span>' +
-                            '<button id="'+result['constellation'][i]['id']+'" onclick="constellation(id='+result['constellation'][i]['id']+'); planetarium.panTo('+result['constellation'][i]['ra']+', '+result['constellation'][i]['declinaison']+', 3000); constellationId = '+(result['constellation'][i]['id']-1)+'; planetarium.draw()"  class="button-constellation"></button>' +
-                        '</div>'
-                    ;
+                        content.el.container_slides.innerHTML +=
+                            '<div class="slide">' +
+                            '<span class="name-constellation">' + result['constellation'][i]['name'] + '</span>' +
+                            '<button id="' + result['constellation'][i]['id'] + '" onclick="constellation(id=' + result['constellation'][i]['id'] + '); planetarium.panTo(' + result['constellation'][i]['ra'] + ', ' + result['constellation'][i]['declinaison'] + ', 3000); constellationId = ' + (result['constellation'][i]['id'] - 1) + ';"  class="button-constellation"></button>' +
+                            '</div>'
+                        ;
+                    }
+
+
                 }
-
-
-
+                else {
+                    content.el.container_slides.innerHTML = null;
+                }
             }
-            else {
-                content.el.container_slides.innerHTML = null;
-            }
-        }
-    };
+        };
 
 // Open request
-    xhr.open("GET", "api/constellations/?name=" + search, true);
+        xhr.open("GET", "api/constellations/?name=" + search, true);
 // Send request
-    xhr.send();
-});
+        xhr.send();
+    }
+}
 
 
 
