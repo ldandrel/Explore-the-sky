@@ -5,12 +5,12 @@ A website experience to see all the constellations with their informations.
 ![Explore the sky](http://explore-the-sky.com/assets/img/space_exploration.png)
 
 ### Features
-* Sky with all the constellations drawing
+* Sky with all the constellations drawing, refresh in real time (lat, long, date)
 * Slider with all the constellations
-* Slide bar for the informations of the constellation choose
-* Search bar
+* Sidebar for the informations of the constellation choose
+* Live search bar
 * Current date and hour
-* City you enter with meteo
+* City (latitude and longitude) with local meteo 
 
 ### Usage
 
