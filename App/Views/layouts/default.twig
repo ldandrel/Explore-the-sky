@@ -20,45 +20,53 @@
 {% block content %}{% endblock %}
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="{{ asset('js/virtualsky.js') }}"></script>
-<script>
-    window.onload = function () {
-        planetarium = $.virtualsky({
-            id: 'container-skymap',
-            projection: 'gnomic',
-            fullscreen: true,
-            constellations: true,
-            credit: false,
-            showdate: false,
-            showposition: false,
-            longitude: {{ long }},
-            latitude: {{ lat }},
-            live : true,
-            keyboard: false,
-            lang:'en',
-            showstarlabels: true,
-            scalestars: 2
-        });
-        planetarium.draw();
-    };
-    var constellationId = null;
-    $(document).ready(function () {
-        $('button').on('click', function () {
-            this.x = parseFloat($(this).attr('data-x'));
-            this.y = parseFloat($(this).attr('data-y'));
-            constellationId = parseInt($(this).attr('data-id'));
-            planetarium.constellationLine = true;
-            planetarium.panTo(this.x, this.y, 3000);
-        });
-        $('.zoom').change(function () {
-            var fov = parseFloat($(this).val());
-            planetarium.setFOV(fov).draw();
+{% if page == 'welcome' %}
+    <script src="{{ asset('js/welcome.js') }}"></script>
+{% endif %}
+{% if page == 'index' %}
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="{{ asset('js/virtualsky.js') }}"></script>
+    <script>
+        window.onload = function () {
+            planetarium = $.virtualsky({
+                id: 'container-skymap',
+                projection: 'gnomic',
+                fullscreen: true,
+                constellations: true,
+                credit: false,
+                showdate: false,
+                showposition: false,
+                longitude: {{ long }},
+                latitude: {{ lat }},
+                live : true,
+                keyboard: false,
+                lang:'en',
+                showstarlabels: true,
+                scalestars: 2
+            });
+            planetarium.draw();
+        };
+        var constellationId = null;
+        $(document).ready(function () {
+            $('button').on('click', function () {
+                this.x = parseFloat($(this).attr('data-x'));
+                this.y = parseFloat($(this).attr('data-y'));
+                constellationId = parseInt($(this).attr('data-id'));
+                planetarium.constellationLine = true;
+                planetarium.panTo(this.x, this.y, 3000);
+            });
+            $('.zoom').change(function () {
+                var fov = parseFloat($(this).val());
+                planetarium.setFOV(fov).draw();
+
+            });
         });
-    });
-</script>
-<script src="{{ asset('js/app.js') }}"></script>
+    </script>
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endif %}
+
+
 
 </body>
 </html>

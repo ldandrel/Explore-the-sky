@@ -42,6 +42,7 @@ class Constellation extends Controller
         $data = $model->all();
 
         View::renderTemplate('pages/index.twig', [
+            'page' => 'index',
             'city' => (isset($_SESSION['data']['city']['address']) ? $_SESSION['data']['city']['address'] : ''),
             'lat' => (isset($_SESSION['data']['city']['lati']) ? $_SESSION['data']['city']['lati'] : 'false'),
             'long' => (isset($_SESSION['data']['city']['longi']) ? $_SESSION['data']['city']['longi'] : 'false'),
@@ -61,7 +62,8 @@ class Constellation extends Controller
         }
 
         View::renderTemplate('pages/welcome.twig', [
-            'title' => 'Welcome'
+            'title' => 'Welcome',
+            'page'  => 'welcome'
         ]);
     }
 
