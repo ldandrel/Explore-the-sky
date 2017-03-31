@@ -63,11 +63,37 @@ body.body-index
                 cursor: pointer;
                 transition: all 0.3s ease;
                 border-radius: 25px;
+                opacity: 0.9;
 
                 &:hover
                 {
-                    color: $black;
+                    opacity: 1;
                 }
+            }
+        }
+
+        a {
+            height: 50px;
+            width: 250px;
+            display: block;
+            margin: auto;
+            margin-top: 25px;
+            background-image: $gradient;
+            line-height: 50px;
+            color: $white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: $extra-bold;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+            opacity: 0.9;
+
+            &:hover
+            {
+                opacity: 1;
             }
         }
     }

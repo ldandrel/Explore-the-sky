@@ -43,8 +43,7 @@ body.body-space
             left: -3px;
             z-index: 20;
 
-            form
-            {
+
 
                 input.search
                 {
@@ -52,8 +51,8 @@ body.body-space
                     border: 3px solid $darkgrey;
                     border-radius: 0 50px 50px 0;
                     outline: none;
-                    background: transparent;
-                    color: $darkgrey;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    color: $white;
                     font-family: $main-font;
 
                     &::placeholder
@@ -62,7 +61,7 @@ body.body-space
                         opacity: 0.7;
                     }
                 }
-            }
+
         }
 
         /* User's informations */
