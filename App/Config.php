@@ -7,7 +7,7 @@ class Config
 {
     const URL = 'http://localhost:8888/';
 
-    const NAME = 'Space Exploration';
+    const NAME = 'Explore the sky';
 
     const DB_HOST = 'localhost';
 
