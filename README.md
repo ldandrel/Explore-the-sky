@@ -35,9 +35,9 @@ The base URL for all API resources is `/api`. The default returned MIME type for
 
 | Endpoint | Description |
 | ---- | --------------- |
-| GET /constellation/ | Get all constellations |
-| GET /products/?id= | Get a specific constellation (with neighbours id, neigbours name, neigbours ra, neigbours declinaison) |
-| GET /products/?name= | Get a specific constellation (use for live search) |
+| GET /constellations/ | Get all constellations |
+| GET /constellations/?id= | Get a specific constellation (with neighbours id, neigbours name, neigbours ra, neigbours declinaison) |
+| GET /constellations/?name= | Get a specific constellation (use for live search) |
 
 
 ### Dependencies used
