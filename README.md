@@ -2,7 +2,7 @@
 
 A website experience to see all the constellations with their informations.
 
-![Explore the sky](http://explore-the-sky.com/img/space_exploration.com)
+![Explore the sky](http://explore-the-sky.com/assets/img/space_exploration.com)
 
 ### Features
 * Sky with all the constellations drawing
