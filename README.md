@@ -1,6 +1,8 @@
 # Explore the Sky
 
-A website to see all the constellations with their informations.
+A website experience to see all the constellations with their informations.
+
+![Explore the sky](http://explore-the-sky.com/img/space_exploration.com)
 
 ### Features
 * Sky with all the constellations drawing
@@ -13,14 +15,29 @@ A website to see all the constellations with their informations.
 ### Usage
 
 #### Requirements
-*
+* [Composer](https://getcomposer.org/) installed
+
+#### Dev requirements
+* [Node.js](https://nodejs.org/en/) installed
+* [Composer](https://getcomposer.org/) installed
 
 
 #### Installation
+- Use `composer install` on root folder
+- Import database structure from `database.sql`
+- Update config values in `App/Config.php`
+- Set the `public` folder as Web server root
 
--
+#### API endpoints
+The base URL for all API resources is `/api`. The default returned MIME type for requests is always `application/json`.
 
-#### Identification
+##### Constellations
+
+| Endpoint | Description |
+| ---- | --------------- |
+| GET /constellation/ | Get all constellations |
+| GET /products/?id= | Get a specific constellation (with neighbours id, neigbours name, neigbours ra, neigbours declinaison) |
+| GET /products/?name= | Get a specific constellation (use for live search) |
 
 
 ### Dependencies used
@@ -29,3 +46,6 @@ A website to see all the constellations with their informations.
 
 #### Back-end
 * [Twig](https://github.com/twigphp/Twig)
+
+### TO DO
+* [ ] Gyro for mobile experience

@@ -7,7 +7,7 @@ var content = {};
 content.el = {};
 
 //Variable for search
-content.el.search                 = document.querySelector('.form-search-constellation input')
+content.el.search                 = document.querySelector('.search')
 
 // Variables for the skymap
 content.el.skymap                 = document.querySelector('#container-skymap');
